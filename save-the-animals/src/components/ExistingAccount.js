@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
+// DISPLAYED ON REGISTRATION PAGES
+// ROUTES TO LOGIN PAGE IF USER HAS EXISTING ACCOUNT
+
 const ExistingAccount = () => {
 
 

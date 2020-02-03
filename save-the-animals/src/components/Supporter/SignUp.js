@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+// USED FOR SUPPORTERS WHO NEED TO CREATE AN ACCOUNT
 
 const SupporterSignUp = (props) => {
     const [supporter, setSupporter] = useState({

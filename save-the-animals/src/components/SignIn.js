@@ -6,6 +6,8 @@ import OrgLogin from './Organization/Login';
 import SupporterLogin from './Supporter/Login';
 import RegisterButton from './RegisterButton';
 
+// MAIN FORM THAT IS RENDERING THE LOGIN VIEWS WHEN SWITCHING BETWEEN TABS
+
 
 const SignIn = (props) => {
     const [activeTab, setActiveTab] = useState('1');
@@ -35,6 +37,7 @@ const SignIn = (props) => {
                     <Row>
                         <Col sm="12">
                             <h4>Organization Login</h4>
+                            {/* RENDERING ORGANIZATION SPECIFIC LOGIN FORM */}
                             <OrgLogin />
                             <RegisterButton />
 
@@ -45,6 +48,7 @@ const SignIn = (props) => {
                     <Row>
                         <Col sm="12">
                             <h4>Supporter Login</h4>
+                            {/* RENDERING SUPPORTER SPECIFIC LOGIN FORM */}
                             <SupporterLogin />
                             <RegisterButton />
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+// USED FOR ORGANIZATIONS WITH EXISTING LOGIN CREDENTIALS
 
 const OrgLogin = (props) => {
     const [organization, setOrganization] = useState({

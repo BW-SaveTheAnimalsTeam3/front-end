@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 
+// USED FOR SUPPORTERS WITH EXISTING LOGIN CREDENTIALS
 
 const SupporterLogin = (props) => {
     const [organization, setOrganization] = useState({

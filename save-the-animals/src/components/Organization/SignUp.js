@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 
 
+// USED FOR ORGANIZATIONS THAT NEED TO CREATE AN ACCOUNT
+
 const OrgSignUp = (props) => {
     const [organization, setOrganization] = useState({
         organizationName: '',

@@ -1,5 +1,8 @@
 import React from 'react'
 
+
+// COMPONENT TO BE RENDERED UPON SUCCESSFUL LOGIN
+
 const HomeScreen = () => {
 
     return (

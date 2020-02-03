@@ -5,7 +5,7 @@ import OrgSignUp from './Organization/SignUp';
 import SupporterSignUp from './Supporter/SignUp';
 import ExistingAccount from './ExistingAccount';
 
-
+// MAIN FORM THAT IS RENDERING THE REGISTRATION VIEWS WHEN SWITCHING BETWEEN TABS
 
 const RegisterAccount = (props) => {
     const [activeTab, setActiveTab] = useState('1');
@@ -35,6 +35,7 @@ const RegisterAccount = (props) => {
                     <Row>
                         <Col sm="12">
                             <h4>Organization SignUp</h4>
+                            {/* RENDERING ORGANIZATION SPECIFIC SIGNUP FORM */}
                             <OrgSignUp />
                             <ExistingAccount />
                         </Col>
@@ -44,6 +45,7 @@ const RegisterAccount = (props) => {
                     <Row>
                         <Col sm="12">
                             <h4>Supporter SignUp</h4>
+                            {/* RENDERING SUPPORTER SPECIFIC SIGNUP FORM */}
                             <SupporterSignUp />
                             <ExistingAccount />
                         </Col>

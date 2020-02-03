@@ -1,6 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
+// DISPLAYED ON LOGIN PAGES
+// ROUTES TO REGISTRATION PAGES IF USER NEEDS TO CREATE AN ACCOUNT
+
 
 const Register = () => {
 
