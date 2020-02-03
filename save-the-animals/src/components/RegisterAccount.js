@@ -3,6 +3,7 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, Ca
 import classnames from 'classnames';
 import OrgSignUp from './Organization/SignUp';
 import SupporterSignUp from './Supporter/SignUp';
+import ExistingAccount from './ExistingAccount';
 
 
 
@@ -35,7 +36,7 @@ const RegisterAccount = (props) => {
                         <Col sm="12">
                             <h4>Organization SignUp</h4>
                             <OrgSignUp />
-
+                            <ExistingAccount />
                         </Col>
                     </Row>
                 </TabPane>
@@ -44,6 +45,7 @@ const RegisterAccount = (props) => {
                         <Col sm="12">
                             <h4>Supporter SignUp</h4>
                             <SupporterSignUp />
+                            <ExistingAccount />
                         </Col>
                     </Row>
                 </TabPane>

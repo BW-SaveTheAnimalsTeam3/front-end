@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import ExistingAccount from '../ExistingAccount';
+import React, { useState } from 'react';
 
 
 const OrgLogin = (props) => {
@@ -18,9 +17,9 @@ const OrgLogin = (props) => {
         <div>
             <form>
                 <label htmlFor="email"></label>
-                <input type="email" placeholder="email" />
+                <input type="email" placeholder="email" required />
                 <label htmlFor="password"></label>
-                <input type="password" placeholder="password" />
+                <input type="password" placeholder="password" required />
                 <button>Sign In</button>
             </form>
         </div>

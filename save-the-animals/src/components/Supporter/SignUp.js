@@ -13,16 +13,19 @@ const SupporterSignUp = (props) => {
         <form>
 
             <label htmlFor="email"></label>
-            <input type="text" placeholder="Email" />
+            <input type="text" placeholder="Email" required />
 
             <label htmlFor="password"></label>
-            <input type="password" placeholder="Password" />
+            <input type="password" placeholder="Password" required />
+
+            <label htmlFor="confirm-password"></label>
+            <input type="password" placeholder="Confirm Password" required />
 
             <label htmlFor="cityName"></label>
-            <input type="text" placeholder="City Name" />
+            <input type="text" placeholder="City Name" required />
 
             <label htmlFor="state"></label>
-            <select name="state" id="state">
+            <select name="state" id="state" required>
                 <option value="" selected="selected">Select a State</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
