@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ExistingAccount from '../ExistingAccount';
 
 
 const OrgLogin = (props) => {
@@ -14,13 +15,15 @@ const OrgLogin = (props) => {
 
     return (
 
-        <form>
-            <label htmlFor="email"></label>
-            <input type="email" placeholder="email" />
-            <label htmlFor="password"></label>
-            <input type="password" placeholder="password" />
-            <button>Sign In</button>
-        </form>
+        <div>
+            <form>
+                <label htmlFor="email"></label>
+                <input type="email" placeholder="email" />
+                <label htmlFor="password"></label>
+                <input type="password" placeholder="password" />
+                <button>Sign In</button>
+            </form>
+        </div>
     )
 }
 

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Route } from 'react-router-dom';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
-import OrgLogin from './Organization/Login';
-import SupporterLogin from './Supporter/Login';
-import RegisterButton from './RegisterButton';
+import OrgSignUp from './Organization/SignUp';
+import SupporterSignUp from './Supporter/SignUp';
 
 
-const SignIn = (props) => {
+
+const RegisterAccount = (props) => {
     const [activeTab, setActiveTab] = useState('1');
 
     const toggle = (tab) => {
@@ -34,9 +33,8 @@ const SignIn = (props) => {
                 <TabPane tabId="1">
                     <Row>
                         <Col sm="12">
-                            <h4>Organization Login</h4>
-                            <OrgLogin />
-                            <RegisterButton />
+                            <h4>Organization SignUp</h4>
+                            <OrgSignUp />
 
                         </Col>
                     </Row>
@@ -44,10 +42,8 @@ const SignIn = (props) => {
                 <TabPane tabId="2">
                     <Row>
                         <Col sm="12">
-                            <h4>Supporter Login</h4>
-                            <SupporterLogin />
-                            <RegisterButton />
-
+                            <h4>Supporter SignUp</h4>
+                            <SupporterSignUp />
                         </Col>
                     </Row>
                 </TabPane>
@@ -58,4 +54,4 @@ const SignIn = (props) => {
     )
 }
 
-export default SignIn;
+export default RegisterAccount;
