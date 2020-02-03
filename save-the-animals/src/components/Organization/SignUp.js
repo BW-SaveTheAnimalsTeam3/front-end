@@ -9,9 +9,14 @@ const OrgSignUp = (props) => {
         location: ''
     })
 
+    const submitForm = (e) => {
+        e.preventDefault();
+        console.log('working');
+    }
+
 
     return (
-        <form>
+        <form onSubmit={submitForm}>
             <label htmlFor="organizationName"></label>
             <input type="text" placeholder="Organization Name" required />
 

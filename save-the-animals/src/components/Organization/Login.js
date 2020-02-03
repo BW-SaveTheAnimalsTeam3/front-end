@@ -8,18 +8,21 @@ const OrgLogin = (props) => {
     });
 
 
-
+    const submitForm = (e) => {
+        e.preventDefault();
+        console.log('working');
+    }
 
 
 
     return (
 
         <div>
-            <form>
+            <form onSubmit={submitForm}>
                 <label htmlFor="email"></label>
-                <input type="email" placeholder="email" required />
+                <input type="email" name="email" placeholder="email" required />
                 <label htmlFor="password"></label>
-                <input type="password" placeholder="password" required />
+                <input type="password" name="password" placeholder="password" required />
                 <button>Sign In</button>
             </form>
         </div>

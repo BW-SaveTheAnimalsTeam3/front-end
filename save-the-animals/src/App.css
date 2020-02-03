@@ -13,3 +13,9 @@ form {
   width: 30%;
   margin: auto;
 }
+
+button {
+  margin: 5% auto;
+  width: 35%;
+  border-radius: 10px;
+}

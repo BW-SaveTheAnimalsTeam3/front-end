@@ -8,13 +8,16 @@ const SupporterLogin = (props) => {
     });
 
 
-
+    const submitForm = (e) => {
+        e.preventDefault();
+        console.log('working');
+    }
 
 
 
     return (
 
-        <form>
+        <form onSubmit={submitForm}>
             <label htmlFor="email"></label>
             <input type="email" placeholder="email" required />
             <label htmlFor="password"></label>

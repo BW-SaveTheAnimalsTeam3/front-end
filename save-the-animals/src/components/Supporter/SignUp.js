@@ -8,18 +8,23 @@ const SupporterSignUp = (props) => {
         location: ''
     })
 
+    const submitForm = (e) => {
+        e.preventDefault();
+        console.log('working');
+    }
+
 
     return (
-        <form>
+        <form onSubmit={submitForm}>
 
             <label htmlFor="email"></label>
             <input type="text" placeholder="Email" required />
 
             <label htmlFor="password"></label>
-            <input type="password" placeholder="Password" required />
+            <input type="password" placeholder="Password" className="initialPassword" required />
 
             <label htmlFor="confirm-password"></label>
-            <input type="password" placeholder="Confirm Password" required />
+            <input type="password" placeholder="Confirm Password" className="confirmPassword" required />
 
             <label htmlFor="cityName"></label>
             <input type="text" placeholder="City Name" required />
