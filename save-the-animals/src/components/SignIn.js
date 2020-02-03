@@ -3,6 +3,7 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, Ca
 import classnames from 'classnames';
 import OrgLogin from './Organization/Login';
 import SupporterLogin from './Supporter/Login';
+import Register from './Register';
 
 
 const FormLayout = (props) => {
@@ -46,6 +47,8 @@ const FormLayout = (props) => {
                     </Row>
                 </TabPane>
             </TabContent>
+
+            <Register />
         </div>
 
     )
