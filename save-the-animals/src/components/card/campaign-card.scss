@@ -1,0 +1,87 @@
+.card {
+  width: 40%;
+  margin: 5% auto;
+
+  button {
+    font-size: 1.5rem;
+  }
+}
+
+.status {
+  background-color: #ee2064;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.image-container {
+  max-height: 600px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+  }
+}
+
+h4 {
+  text-align: start;
+  font-size: 1.5rem;
+}
+
+.location {
+  text-align: start;
+}
+
+//Modal Styles
+
+.modal-header {
+  p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: normal;
+  }
+}
+
+.modal-body {
+  padding: 0;
+
+  .bottom-content {
+      margin: 2%;
+      font-size: 1.2rem;
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      background-color: inherit;
+    }
+    .progress {
+        margin-bottom: 2%;
+    }
+
+    .progress-bar {
+      background-color: #37ec7e;
+    
+    }
+
+    span {
+        font-weight: bold;
+    }
+  }
+}
+
+.modal-footer {
+  padding: 0;
+
+  button {
+    width: 50%;
+    padding: 2%;
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .delete-button {
+    color: #ee2064;
+  }
+}
