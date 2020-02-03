@@ -1,5 +1,5 @@
 .card {
-  width: 40%;
+  width: 85%;
   margin: 5% auto;
 
   button {
@@ -8,7 +8,7 @@
 }
 
 .status {
-  background-color: #ee2064;
+  background-color: $critical-red;
   color: white;
   font-size: 2rem;
   font-weight: bold;
@@ -27,10 +27,12 @@
 h4 {
   text-align: start;
   font-size: 1.5rem;
+  margin: 2%;
 }
 
 .location {
   text-align: start;
+  margin: 1% 2%;
 }
 
 //Modal Styles
@@ -60,7 +62,7 @@ h4 {
     }
 
     .progress-bar {
-      background-color: #37ec7e;
+      background-color: $green;
     
     }
 
@@ -82,6 +84,6 @@ h4 {
   }
 
   .delete-button {
-    color: #ee2064;
+    color: $critical-red
   }
 }

@@ -7,8 +7,6 @@ import {
   Progress
 } from "reactstrap";
 
-import "./campaign-card.scss";
-
 const CampaignCard = () => {
   const [modal, setModal] = useState(false);
 
