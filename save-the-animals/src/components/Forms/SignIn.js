@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
-import OrgLogin from './Organization/Login';
-import SupporterLogin from './Supporter/Login';
-import RegisterButton from './RegisterButton';
+import OrgLogin from '../Organization/Login';
+import SupporterLogin from '../Supporter/Login';
+import RegisterButton from '../RegisterButton';
 
 // MAIN FORM THAT IS RENDERING THE LOGIN VIEWS WHEN SWITCHING BETWEEN TABS
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col } from 'reactstrap';
 import classnames from 'classnames';
-import OrgSignUp from './Organization/SignUp';
-import SupporterSignUp from './Supporter/SignUp';
-import ExistingAccount from './ExistingAccount';
+import OrgSignUp from '../Organization/SignUp';
+import SupporterSignUp from '../Supporter/SignUp';
+import ExistingAccount from '../ExistingAccount';
 
 // MAIN FORM THAT IS RENDERING THE REGISTRATION VIEWS WHEN SWITCHING BETWEEN TABS
 
