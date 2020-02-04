@@ -1,0 +1,61 @@
+.create-form {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 60%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 2%;
+  border-radius: 5px;
+
+  h2 {
+    text-align: center;
+  }
+
+  form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    input {
+      border-radius: 5px;
+    }
+
+    .description {
+        height: 10%;
+    }
+
+    .list-group-item {
+        font-weight: bold;
+    }
+
+    .urgent {
+      color: $critical-red;
+    }
+
+    .critical {
+      color: $urgent-orange;
+    }
+
+    .pressing {
+      color: $pressing-yellow;
+    }
+
+    .longterm {
+      color: $longterm-green;
+    }
+
+    .submit-button {
+        background-color: $green;
+        color: white;
+        border-radius: 30px;
+        border: 2px solid $gray;
+        font-size: 2rem;
+        width: 30%;
+        margin: 1% auto 0;
+        padding: 0.5%;
+        outline: none;
+    }
+  }
+}

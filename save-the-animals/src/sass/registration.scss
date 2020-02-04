@@ -1,0 +1,39 @@
+.nav-tabs {
+  justify-content: center;
+}
+
+.sign-in {
+  text-align: center;
+
+  form {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    width: 30%;
+    margin: auto;
+  }
+
+  button {
+    margin: 5% auto;
+    width: 35%;
+    border-radius: 10px;
+  }
+}
+
+.registration {
+  text-align: center;
+
+  form {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    width: 30%;
+    margin: auto;
+  }
+
+  button {
+    margin: 5% auto;
+    width: 35%;
+    border-radius: 10px;
+  }
+}

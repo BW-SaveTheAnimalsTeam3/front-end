@@ -1,12 +1,13 @@
 .App {
-  text-align: center;
+    background-color: #707070;
+  /* text-align: center; */
 }
 
-.nav-tabs {
+/* .nav-tabs {
   justify-content: center;
-}
+} */
 
-form {
+/* form {
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -18,4 +19,4 @@ button {
   margin: 5% auto;
   width: 35%;
   border-radius: 10px;
-}
+} */
