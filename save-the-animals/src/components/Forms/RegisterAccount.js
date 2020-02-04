@@ -56,7 +56,7 @@ const RegisterAccount = props => {
             <Col sm="12">
               <h4>Organization SignUp</h4>
               {/* RENDERING ORGANIZATION SPECIFIC SIGNUP FORM */}
-              <OrgSignUp />
+              <OrgSignUp {...props} />
               <ExistingAccount />
             </Col>
           </Row>
@@ -66,7 +66,7 @@ const RegisterAccount = props => {
             <Col sm="12">
               <h4>Supporter SignUp</h4>
               {/* RENDERING SUPPORTER SPECIFIC SIGNUP FORM */}
-              <SupporterSignUp />
+              <SupporterSignUp {...props} />
               <ExistingAccount />
             </Col>
           </Row>

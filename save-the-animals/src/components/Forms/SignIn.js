@@ -26,9 +26,10 @@ const SignIn = props => {
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
   };
+  console.log(props, 'sign in')
 
   return (
-    <div className='sign-in'>
+    <div className="sign-in">
       <Nav tabs>
         <NavItem>
           <NavLink
@@ -57,7 +58,7 @@ const SignIn = props => {
             <Col sm="12">
               <h4>Organization Login</h4>
               {/* RENDERING ORGANIZATION SPECIFIC LOGIN FORM */}
-              <OrgLogin />
+              <OrgLogin {...props}/>
               <RegisterButton />
             </Col>
           </Row>
@@ -67,7 +68,7 @@ const SignIn = props => {
             <Col sm="12">
               <h4>Supporter Login</h4>
               {/* RENDERING SUPPORTER SPECIFIC LOGIN FORM */}
-              <SupporterLogin />
+              <SupporterLogin {...props} />
               <RegisterButton />
             </Col>
           </Row>

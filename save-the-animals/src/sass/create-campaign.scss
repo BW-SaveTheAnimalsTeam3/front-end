@@ -31,11 +31,11 @@
     }
 
     .urgent {
-      color: $critical-red;
+      color: $urgent-orange;
     }
 
     .critical {
-      color: $urgent-orange;
+      color: $critical-red;
     }
 
     .pressing {
