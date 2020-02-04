@@ -3,26 +3,32 @@ import React, { useState } from 'react'
 // USED FOR SUPPORTERS WITH EXISTING LOGIN CREDENTIALS
 
 const SupporterLogin = (props) => {
-    const [organization, setOrganization] = useState({
+    const [supporterLogin, setSupporterLogin] = useState({
         email: '',
         password: ''
     });
 
 
-    const submitForm = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('working');
+        setSupporterLogin({ ...supporterLogin, [e.target.name]: e.target.value })
+        console.log(supporterLogin);
+    }
+
+    const handleChanges = (e) => {
+        e.preventDefault();
+        setSupporterLogin({ ...supporterLogin, [e.target.name]: e.target.value })
     }
 
 
 
     return (
 
-        <form onSubmit={submitForm}>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="email"></label>
-            <input type="email" placeholder="email" required />
+            <input type="email" placeholder="email" name="email" onChange={handleChanges} value={supporterLogin.email} required />
             <label htmlFor="password"></label>
-            <input type="password" placeholder="password" required />
+            <input type="password" placeholder="password" name="password" onChange={handleChanges} value={supporterLogin.password} required />
             <button>Sign In</button>
         </form>
     )
