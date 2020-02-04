@@ -6,6 +6,7 @@ import "./App.css";
 
 import OrganizationProfile from "./components/profile/organization-profile";
 import CreateCampaign from "./components/create-campaign";
+import SupporterProfile from './components/profile/supporter-profile';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <RegisterAccount />
       </Route>
       <Route path="/organization" component={OrganizationProfile} />
+      <Route path="/supporter" component={SupporterProfile} />
       <Route path="/create-campaign" component={CreateCampaign} />
     </div>
   );
