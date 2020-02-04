@@ -26,6 +26,7 @@ const SignIn = props => {
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
   };
+  console.log(props, 'sign in')
 
   return (
     <div className='form-container'>

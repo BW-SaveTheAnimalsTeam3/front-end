@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+
+import { registrationSupporterPost } from '../../actions/registrationActions'
 
 // USED FOR SUPPORTERS WHO NEED TO CREATE AN ACCOUNT
 
@@ -12,8 +15,7 @@ const SupporterSignUp = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSupporterSignUp({ ...supporterSignUp, [e.target.name]: e.target.value })
-        console.log(supporterSignUp);
+        props.history.push('/')
     }
 
     const handleChanges = (e) => {
@@ -21,9 +23,10 @@ const SupporterSignUp = (props) => {
         setSupporterSignUp({ ...supporterSignUp, [e.target.name]: e.target.value })
     }
 
+    console.log(supporterSignUp)
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={() => props.registrationSupporterPost(supporterSignUp), handleSubmit}>
 
             <label htmlFor="email"></label>
             <input type="text" placeholder="Email" name="email" onChange={handleChanges} value={supporterSignUp.email} required />
@@ -100,4 +103,4 @@ const SupporterSignUp = (props) => {
     )
 }
 
-export default SupporterSignUp;
+export default connect(null, {registrationSupporterPost}) (SupporterSignUp);

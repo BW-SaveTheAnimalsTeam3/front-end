@@ -18,24 +18,44 @@
     flex-direction: column;
     justify-content: space-evenly;
 
+    .image-description-cont {
+      display: flex;
+
+      label {
+        cursor: pointer;
+      }
+
+      .description {
+      }
+
+      .image {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+      }
+
+      img {
+        border: 1px solid red;
+      }
+    }
+
     input {
       border-radius: 5px;
     }
 
-    .description {
-        height: 10%;
-    }
-
     .list-group-item {
-        font-weight: bold;
+      font-weight: bold;
     }
 
     .urgent {
-      color: $critical-red;
+      color: $urgent-orange;
     }
 
     .critical {
-      color: $urgent-orange;
+      color: $critical-red;
     }
 
     .pressing {
@@ -47,15 +67,15 @@
     }
 
     .submit-button {
-        background-color: $green;
-        color: white;
-        border-radius: 30px;
-        border: 2px solid $gray;
-        font-size: 2rem;
-        width: 30%;
-        margin: 1% auto 0;
-        padding: 0.5%;
-        outline: none;
+      background-color: $green;
+      color: white;
+      border-radius: 30px;
+      border: 2px solid $gray;
+      font-size: 2rem;
+      width: 30%;
+      margin: 1% auto 0;
+      padding: 0.5%;
+      outline: none;
     }
   }
 }
