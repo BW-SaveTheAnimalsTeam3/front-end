@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 // USED FOR ORGANIZATIONS WITH EXISTING LOGIN CREDENTIALS
 
@@ -29,7 +30,7 @@ const OrgLogin = (props) => {
                 <input type="email" name="email" placeholder="email" onChange={handleChanges} value={orgLogin.email} required />
                 <label htmlFor="password"></label>
                 <input type="password" name="password" placeholder="password" onChange={handleChanges} value={orgLogin.password} required />
-                <button>Sign In</button>
+                <button><Link to='/organization'>Sign In</Link></button>
             </form>
         </div>
     )
