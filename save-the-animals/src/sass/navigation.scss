@@ -5,12 +5,12 @@
     margin: auto;
     background-color: $green;
 
-    li {
+    .menu-item {
         padding: 0 2%;
+        color: black;
 
         &:hover {
             color: white;
-            text-decoration: underline;
         }
     }
 }
