@@ -33,7 +33,7 @@ const OrgSignUp = (props) => {
             <input type="text" placeholder="Email" name="email" onChange={handleChanges} value={orgSignUp.email} required />
 
             <label htmlFor="password"></label>
-            <input type="password" placeholder="Password" required />
+            <input type="password" placeholder="Password" name='password' onChange={handleChanges} value={orgSignUp.password} required />
 
             <label htmlFor="confirm-password"></label>
             <input type="password" placeholder="Confirm Password" required />

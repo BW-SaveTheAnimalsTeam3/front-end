@@ -1,0 +1,16 @@
+.nav-list {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1% 0;
+    margin: auto;
+    background-color: $green;
+
+    .menu-item {
+        padding: 0 2%;
+        color: black;
+
+        &:hover {
+            color: white;
+        }
+    }
+}

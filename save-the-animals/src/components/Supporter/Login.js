@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 // USED FOR SUPPORTERS WITH EXISTING LOGIN CREDENTIALS
 
@@ -29,7 +30,7 @@ const SupporterLogin = (props) => {
             <input type="email" placeholder="email" name="email" onChange={handleChanges} value={supporterLogin.email} required />
             <label htmlFor="password"></label>
             <input type="password" placeholder="password" name="password" onChange={handleChanges} value={supporterLogin.password} required />
-            <button>Sign In</button>
+            <button><Link to='/supporter'>Sign In</Link></button>
         </form>
     )
 }
