@@ -47,8 +47,8 @@ const OrgSignUp = props => {
         required
       />
 
-      <label htmlFor="password"></label>
-      <input type="password" placeholder="Password" required />
+<label htmlFor="password"></label>
+            <input type="password" placeholder="Password" name='password' onChange={handleChanges} value={orgSignUp.password} required />4
 
       <label htmlFor="confirm-password"></label>
       <input type="password" placeholder="Confirm Password" required />

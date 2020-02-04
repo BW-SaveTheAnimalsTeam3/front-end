@@ -7,6 +7,7 @@ import {
   InputGroupAddon
 } from "reactstrap";
 import { connect } from "react-redux";
+import Navigation from './Navigation';
 
 import { createCampaignPost } from "../actions/createCampaignActions";
 
@@ -65,6 +66,8 @@ const CreateCampaign = props => {
   // console.log(props);
 
   return (
+<>
+<Navigation />
     <div className="create-form">
       <h2>Create A New Campaign</h2>
       <form
@@ -128,50 +131,57 @@ const CreateCampaign = props => {
           >
             Critical
           </ListGroupItem>
-          <ListGroupItem
-            onClick={handleClick}
-            name="urgency"
-            value="urgent"
-            className="urgent"
-            tag="button"
-            action
-          >
-            Urgent
+            <ListGroupItem
+              onClick={handleClick}
+              name="urgency"
+              value="urgent"
+              className="urgent"
+              tag="button"
+              action
+            >
+              Urgent
           </ListGroupItem>
-          <ListGroupItem
-            onClick={handleClick}
-            name="urgency"
-            value="pressing"
-            className="pressing"
-            tag="button"
-            action
-          >
-            Pressing
+            <ListGroupItem
+              onClick={handleClick}
+              name="urgency"
+              value="pressing"
+              className="pressing"
+              tag="button"
+              action
+            >
+              Pressing
           </ListGroupItem>
-          <ListGroupItem
-            onClick={handleClick}
-            name="urgency"
-            value="longterm"
-            className="longterm"
-            tag="button"
-            action
-          >
-            Longterm
+            <ListGroupItem
+              onClick={handleClick}
+              name="urgency"
+              value="longterm"
+              className="longterm"
+              tag="button"
+              action
+            >
+              Longterm
           </ListGroupItem>
-        </ListGroup>
-        <InputGroup>
-          <InputGroupAddon addonType="prepend">$</InputGroupAddon>
+          </ListGroup>
+          <InputGroup>
+            <InputGroupAddon addonType="prepend">$</InputGroupAddon>
+            <Input
+              placeholder="Funding Goal"
+              min={0}
+              max={100}
+              type="number"
+              step="1"
+              name="goal"
+              value={newCampaign.goal}
+              onChange={handleChanges}
+            />
+          </InputGroup>
           <Input
-            placeholder="Funding Goal"
-            min={0}
-            max={100}
-            type="number"
-            step="1"
-            name="goal"
-            value={newCampaign.goal}
+            type="datetime-local"
+            name="deadline"
+            value={newCampaign.deadline}
             onChange={handleChanges}
           />
-        </InputGroup>
+        
         <Input
           type="datetime-local"
           name="deadline"
@@ -183,6 +193,7 @@ const CreateCampaign = props => {
         </button>
       </form>
     </div>
+    </>
   );
 };
 

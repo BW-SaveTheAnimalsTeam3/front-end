@@ -7,6 +7,7 @@ import OrganizationProfile from "./components/profile/organization-profile";
 import CreateCampaign from "./components/create-campaign";
 import SignIn from "./components/Forms/SignIn";
 import RegisterAccount from "./components/Forms/RegisterAccount";
+import SupporterProfile from './components/profile/supporter-profile';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route exact path="/" component={SignIn} />
       <Route exact path="/register" component={RegisterAccount} />
       <Route path="/organization" component={OrganizationProfile} />
+      <Route path="/supporter" component={SupporterProfile} />
       <Route path="/create-campaign" component={CreateCampaign} />
     </div>
   );

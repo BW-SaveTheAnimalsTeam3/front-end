@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { loginAuth } from '../../actions/loginActions';
 
@@ -43,7 +44,7 @@ const OrgLogin = props => {
           value={orgLogin.password}
           required
         />
-        <button>Sign In</button>
+       <button><Link to='/organization'>Sign In</Link></button>
       </form>
     </div>
   );

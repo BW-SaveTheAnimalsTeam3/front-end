@@ -29,51 +29,52 @@ const SignIn = props => {
   console.log(props, 'sign in')
 
   return (
-    <div className="sign-in">
-      <Nav tabs>
-        <NavItem>
-          <NavLink
-            className={classnames({ active: activeTab === "1" })}
-            onClick={() => {
-              toggle("1");
-            }}
-          >
-            Organization
+    <div className='form-container'>
+      <div className='sign-in'>
+        <h4 className='form-heading'>Login</h4>
+        <Nav tabs>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: activeTab === "1" })}
+              onClick={() => {
+                toggle("1");
+              }}
+            >
+              Organization
           </NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink
-            className={classnames({ active: activeTab === "2" })}
-            onClick={() => {
-              toggle("2");
-            }}
-          >
-            Supporter
+          </NavItem>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: activeTab === "2" })}
+              onClick={() => {
+                toggle("2");
+              }}
+            >
+              Supporter
           </NavLink>
-        </NavItem>
-      </Nav>
-      <TabContent activeTab={activeTab}>
-        <TabPane tabId="1">
-          <Row>
-            <Col sm="12">
-              <h4>Organization Login</h4>
-              {/* RENDERING ORGANIZATION SPECIFIC LOGIN FORM */}
-              <OrgLogin {...props}/>
-              <RegisterButton />
-            </Col>
-          </Row>
-        </TabPane>
-        <TabPane tabId="2">
-          <Row>
-            <Col sm="12">
-              <h4>Supporter Login</h4>
-              {/* RENDERING SUPPORTER SPECIFIC LOGIN FORM */}
-              <SupporterLogin {...props} />
-              <RegisterButton />
-            </Col>
-          </Row>
-        </TabPane>
-      </TabContent>
+          </NavItem>
+        </Nav>
+        <TabContent activeTab={activeTab}>
+          <TabPane tabId="1">
+            <Row>
+              <Col sm="12">
+                {/* RENDERING ORGANIZATION SPECIFIC LOGIN FORM */}
+                <OrgLogin />
+                <RegisterButton />
+              </Col>
+            </Row>
+          </TabPane>
+          <TabPane tabId="2">
+            <Row>
+              <Col sm="12">
+                {/* RENDERING SUPPORTER SPECIFIC LOGIN FORM */}
+                <SupporterLogin />
+                <RegisterButton />
+              </Col>
+            </Row>
+          </TabPane>
+        </TabContent>
+      </div>
     </div>
   );
 };
