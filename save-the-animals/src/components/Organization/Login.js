@@ -3,15 +3,20 @@ import React, { useState } from 'react';
 // USED FOR ORGANIZATIONS WITH EXISTING LOGIN CREDENTIALS
 
 const OrgLogin = (props) => {
-    const [organization, setOrganization] = useState({
+    const [orgLogin, setOrgLogin] = useState({
         email: '',
         password: ''
     });
 
-
-    const submitForm = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('working');
+        setOrgLogin({ ...orgLogin, [e.target.name]: e.target.value })
+        console.log(orgLogin);
+    }
+
+
+    const handleChanges = (e) => {
+        setOrgLogin({ ...orgLogin, [e.target.name]: e.target.value })
     }
 
 
@@ -19,11 +24,11 @@ const OrgLogin = (props) => {
     return (
 
         <div>
-            <form onSubmit={submitForm}>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="email"></label>
-                <input type="email" name="email" placeholder="email" required />
+                <input type="email" name="email" placeholder="email" onChange={handleChanges} value={orgLogin.email} required />
                 <label htmlFor="password"></label>
-                <input type="password" name="password" placeholder="password" required />
+                <input type="password" name="password" placeholder="password" onChange={handleChanges} value={orgLogin.password} required />
                 <button>Sign In</button>
             </form>
         </div>

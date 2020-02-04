@@ -4,26 +4,33 @@ import React, { useState } from 'react'
 // USED FOR ORGANIZATIONS THAT NEED TO CREATE AN ACCOUNT
 
 const OrgSignUp = (props) => {
-    const [organization, setOrganization] = useState({
+    const [orgSignUp, setOrgSignUp] = useState({
         organizationName: '',
         email: '',
         password: '',
-        location: ''
+        city: '',
+        state: ''
     })
 
-    const submitForm = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('working');
+        setOrgSignUp({ ...orgSignUp, [e.target.name]: e.target.value })
+        console.log(orgSignUp);
+    }
+
+    const handleChanges = (e) => {
+        e.preventDefault();
+        setOrgSignUp({ ...orgSignUp, [e.target.name]: e.target.value })
     }
 
 
     return (
-        <form onSubmit={submitForm}>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="organizationName"></label>
-            <input type="text" placeholder="Organization Name" required />
+            <input type="text" placeholder="Organization Name" name="organizationName" onChange={handleChanges} value={orgSignUp.organizationName} required />
 
             <label htmlFor="email"></label>
-            <input type="text" placeholder="Email" required />
+            <input type="text" placeholder="Email" name="email" onChange={handleChanges} value={orgSignUp.email} required />
 
             <label htmlFor="password"></label>
             <input type="password" placeholder="Password" required />
@@ -32,11 +39,11 @@ const OrgSignUp = (props) => {
             <input type="password" placeholder="Confirm Password" required />
 
             <label htmlFor="cityName"></label>
-            <input type="text" placeholder="City Name" required />
+            <input type="text" placeholder="City Name" name="city" onChange={handleChanges} value={orgSignUp.city} required />
 
             <label htmlFor="state"></label>
-            <select name="state" id="state" required>
-                <option value="" selected="selected">Select a State</option>
+            <select name="state" id="state" name="state" onChange={handleChanges} value={orgSignUp.state} required>
+                <option value="" defaultValue="selected">Select a State</option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
