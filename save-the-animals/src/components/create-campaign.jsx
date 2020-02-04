@@ -84,9 +84,12 @@ const CreateCampaign = props => {
           value={newCampaign.species}
           onChange={handleChanges}
         />
-        <div className='image-description-cont'>
+        <div className="image-description-cont">
+          <label htmlFor='file'>Upload Image</label>
           <input
+            className="image"
             type="file"
+            id='file'
             name="file"
             placeholder="Upload Image"
             onChange={uploadImage}
