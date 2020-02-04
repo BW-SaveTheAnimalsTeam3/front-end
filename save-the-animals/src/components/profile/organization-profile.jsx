@@ -11,6 +11,8 @@ const OrganizationProfile = (props) => {
     props.history.push('/create-campaign');
   }
 
+  // AXIOS CALL HERE WHEN ENDPOINTS ARE READY
+
   return (
     <>
       <Navigation />
