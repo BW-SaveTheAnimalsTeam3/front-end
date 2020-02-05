@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import {
   ListGroup,
   ListGroupItem,
@@ -13,13 +14,24 @@ import {
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 
-import {editCampaignModal} from '../actions/editCampaignActions'
+import { editCampaignModal } from "../actions/editCampaignActions";
 
-const EditCampaign = (props) => {
+const EditCampaign = props => {
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState("");
-  
+  const [initialValue, setInitialValue] = useState({
+    title: ''
+  });
+  const { id } = useParams();
+
+//   useEffect(() => {
+//       const itemToUpdate = props.find(thing => `${thing.id}` === id)
+
+//       if (itemToUpdate) {
+//           setInitialValue(itemToUpdate)
+//       }
+//   }, [props, id])
 
   const handleClick = e => {
     e.preventDefault();
@@ -28,7 +40,9 @@ const EditCampaign = (props) => {
     setSelected(e.target.value);
   };
 
-  const handleChanges = e => {};
+  const handleChanges = e => {
+      setInitialValue({ ...initialValue, [e.target.name]: e.target.value })
+  };
 
   const handleSubmit = e => {
     // e.preventDefault();
@@ -56,20 +70,30 @@ const EditCampaign = (props) => {
     setLoading(false);
   };
 
- console.log('props', props.openModal)
+  console.log("props", props.openModal);
+  console.log('initual value', initialValue)
 
   return (
     <>
-      <div className='edit-form'>
-        <Modal isOpen={props.openModal}>
+      <div className="edit-form">
+        <Modal isOpen={true}>
           <ModalHeader>
             Save This Turtle
+            {props.title}
             <p>South Palm Beach</p>
-            <button onClick={() => editCampaignModal(!props.openModal)}>Close</button>
+            <button onClick={() => props.editCampaignModal(false)}>
+              Close
+            </button>
           </ModalHeader>
           <ModalBody>
             <form onSubmit={handleSubmit}>
-              <Input type="text" placeholder="Name Campaign" name="title" />
+              <Input
+                type="text"
+                placeholder="Name Campaign"
+                name="title"
+                value={initialValue.title}
+                onChange={handleChanges}
+              />
               <Input type="text" placeholder="Species" name="species" />
               <div className="image-description-cont">
                 <div className="image-cont">
@@ -180,10 +204,11 @@ const EditCampaign = (props) => {
 };
 
 const mapStateToProps = state => {
-    console.log(state.editCampaignReducer, 'state')
-    return {
-        openModal: state.editCampaignReducer.isOpen
-    }
-}
+  console.log(state.editCampaignReducer, "state");
+  return {
+    openModal: state.editCampaignReducer.isOpen,
+    title: state.editCampaignReducer.campaign.campaign
+  };
+};
 
-export default connect(mapStateToProps, {editCampaignModal}) (EditCampaign);
+export default connect(mapStateToProps, { editCampaignModal })(EditCampaign);

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 
 import { registrationSupporterPost } from "../../../actions/registrationActions";
 
@@ -7,15 +8,21 @@ import { registrationSupporterPost } from "../../../actions/registrationActions"
 
 const SupporterSignUp = props => {
   const [supporterSignUp, setSupporterSignUp] = useState({
-    email: "",
+    username: "",
     password: "",
-    city: "",
-    state: ""
+    // city: "",
+    // state: ""
   });
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.history.push("/");
+    axios.post(
+      `https://save-the-animals-backend.herokuapp.com/api/users/register`,
+      supporterSignUp
+    )
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+    // props.history.push("/");
   };
 
   const handleChanges = e => {
@@ -31,13 +38,13 @@ const SupporterSignUp = props => {
         (() => props.registrationSupporterPost(supporterSignUp), handleSubmit)
       }
     >
-      <label htmlFor="email"></label>
+      <label htmlFor="username"></label>
       <input
         type="text"
-        placeholder="Email"
-        name="email"
+        placeholder="username"
+        name="username"
         onChange={handleChanges}
-        value={supporterSignUp.email}
+        value={supporterSignUp.username}
         required
       />
 
@@ -51,7 +58,7 @@ const SupporterSignUp = props => {
         value={supporterSignUp.password}
         required
       />
-
+{/* 
       <label htmlFor="confirm-password"></label>
       <input
         type="password"
@@ -132,7 +139,7 @@ const SupporterSignUp = props => {
         <option value="WV">West Virginia</option>
         <option value="WI">Wisconsin</option>
         <option value="WY">Wyoming</option>
-      </select>
+      </select> */}
 
       <button>Create an Account</button>
     </form>

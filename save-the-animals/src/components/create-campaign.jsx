@@ -8,19 +8,23 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
+import { useHistory } from "react-router";
+import axios from "axios";
 
 import Navigation from "./Navigation";
 import { createCampaignPost } from "../actions/createCampaignActions";
 
 const CreateCampaign = props => {
   const [newCampaign, setNewCampaign] = useState({
-    title: "",
-    species: "",
-    image_url: "",
-    description: "",
+    org_id: 1,
+    campaign: "",
     location: "",
-    urgency: "",
-    goal: "",
+    // image_url: "",
+    description: "",
+    
+    species: "",
+    urgency_level: "",
+    funding_goal: "",
     deadline: ""
   });
   const [image, setImage] = useState("");
@@ -42,7 +46,13 @@ const CreateCampaign = props => {
   const handleSubmit = e => {
     e.preventDefault();
     console.log("submit");
-    props.history.push("/organization");
+    axios.post(
+      `https://save-the-animals-backend.herokuapp.com/api/campaigns/createNewCampaign`,
+      newCampaign
+    )
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+    // props.history.push("/organization");
   };
 
   const uploadImage = async e => {
@@ -81,8 +91,8 @@ const CreateCampaign = props => {
           <Input
             type="text"
             placeholder="Name Campaign"
-            name="title"
-            value={newCampaign.title}
+            name="campaign"
+            value={newCampaign.campaign}
             onChange={handleChanges}
           />
           <Input
@@ -101,7 +111,7 @@ const CreateCampaign = props => {
                 id="file"
                 name="file"
                 placeholder="Upload Image"
-                onChange={uploadImage}
+                // onChange={uploadImage}
               />
               {loading ? (
                 <div className="loader">
@@ -138,7 +148,7 @@ const CreateCampaign = props => {
             <p>Select One. This can always be changed later.</p>
             <ListGroupItem
               onClick={handleClick}
-              name="urgency"
+              name="urgency_level"
               value="critical"
               className={`critical ${
                 selected === "critical" ? "selected" : ""
@@ -150,7 +160,7 @@ const CreateCampaign = props => {
             </ListGroupItem>
             <ListGroupItem
               onClick={handleClick}
-              name="urgency"
+              name="urgency_level"
               value="urgent"
               className={`urgent ${selected === "urgent" ? "selected" : ""}`}
               tag="button"
@@ -160,7 +170,7 @@ const CreateCampaign = props => {
             </ListGroupItem>
             <ListGroupItem
               onClick={handleClick}
-              name="urgency"
+              name="urgency_level"
               value="pressing"
               className={`pressing ${
                 selected === "pressing" ? "selected" : ""
@@ -172,7 +182,7 @@ const CreateCampaign = props => {
             </ListGroupItem>
             <ListGroupItem
               onClick={handleClick}
-              name="urgency"
+              name="urgency_level"
               value="longterm"
               className={`longterm ${
                 selected === "longterm" ? "selected" : ""
@@ -191,8 +201,8 @@ const CreateCampaign = props => {
               max={10000}
               type="number"
               step="1"
-              name="goal"
-              value={newCampaign.goal}
+              name="funding_goal"
+              value={newCampaign.funding_goal}
               onChange={handleChanges}
             />
           </InputGroup>

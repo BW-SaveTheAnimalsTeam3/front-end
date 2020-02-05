@@ -6,10 +6,13 @@ import {
   ModalFooter,
   Progress
 } from "reactstrap";
+import { connect } from "react-redux";
 
-import  EditCampaign  from '../edit-campaign';
 
-const CampaignCard = (props) => {
+import EditCampaign from "../edit-campaign";
+import { editCampaignGet, editCampaignModal } from "../../actions/editCampaignActions";
+
+const CampaignCard = props => {
   const [modal, setModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
 
@@ -19,10 +22,18 @@ const CampaignCard = (props) => {
     setEditModal(!editModal);
   };
 
+  const handleClick = ( id) => {
+    // e.preventDefault();
+    
+     
+     props.editCampaignModal(true)
+     toggleEdit()
+     props.editCampaignGet(id);
+  };
+
   return (
     <>
       {props.campaigns.map(campaign => {
-
         return (
           <div className="card" key={campaign.id}>
             <h4>{campaign.campaign}</h4>
@@ -50,27 +61,30 @@ const CampaignCard = (props) => {
                   />
                 </div>
                 <div className="bottom-content">
-                  <p>
-                    {campaign.description}
-                  </p>
+                  <p>{campaign.description}</p>
                   <div className="progress-info">
                     <span>Progress Toward Goal:</span>
                     <p>{campaign.funding_goal}</p>
                   </div>
                   <Progress value={75}>75%</Progress>
-                  <p><span>Deadline:</span> {campaign.deadline}</p>
+                  <p>
+                    <span>Deadline:</span> {campaign.deadline}
+                  </p>
                 </div>
               </ModalBody>
               <ModalFooter>
-                <button className="edit-button">Edit Campaign</button>
+                <button className="edit-button" onClick={() => handleClick(campaign.id)}>
+                  Edit Campaign
+                </button>
                 <button className="delete-button">Delete Campaign</button>
               </ModalFooter>
             </Modal>
           </div>
-        )
+        );
       })}
+      {editModal === true && <EditCampaign />}
     </>
   );
 };
 
-export default CampaignCard;
+export default connect(null, { editCampaignGet, editCampaignModal })(CampaignCard);

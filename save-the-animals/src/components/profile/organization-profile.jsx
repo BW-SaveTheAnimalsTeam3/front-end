@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {useHistory} from 'react-router';
 
 import CampaignCard from '../card/campaign-card';
 import Navigation from '../Navigation';
 
 const OrganizationProfile = (props) => {
   const [campaigns, setCampaigns] = useState([]);
+  const history = useHistory()
 
   const handleClick = e => {
     e.preventDefault();
-    props.history.push('/create-campaign');
+    history.push('/create-campaign');
   }
 
   // AXIOS CALL HERE WHEN ENDPOINTS ARE READY
@@ -17,6 +19,7 @@ const OrganizationProfile = (props) => {
     axios
       .get('https://save-the-animals-backend.herokuapp.com/api/campaigns')
       .then(res => {
+        // console.log('.get response', res)
         setCampaigns(res.data);
       })
       .catch(err => {
@@ -24,6 +27,7 @@ const OrganizationProfile = (props) => {
       })
   }, [])
 
+  // console.log(props, 'props')
 
   return (
     <>

@@ -11,11 +11,13 @@ import SupporterProfile from './components/profile/supporter-profile';
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
+  
   return (
     <div className="App">
       <Route exact path="/" component={SignIn} />
       <Route exact path="/register" component={RegisterAccount} />
       <PrivateRoute path="/organization" component={OrganizationProfile} />
+      {/* <PrivateRoute path="/organization"><OrganizationProfile /></PrivateRoute> */}
       <PrivateRoute path="/supporter" component={SupporterProfile} />
       <PrivateRoute path="/create-campaign" component={CreateCampaign} />
     </div>
