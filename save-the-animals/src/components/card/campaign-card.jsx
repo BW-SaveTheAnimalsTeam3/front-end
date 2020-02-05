@@ -7,10 +7,17 @@ import {
   Progress
 } from "reactstrap";
 
+import  EditCampaign  from '../edit-campaign';
+
 const CampaignCard = (props) => {
   const [modal, setModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+  const toggleEdit = () => {
+    setModal(false);
+    setEditModal(!editModal);
+  };
 
   return (
     <>
