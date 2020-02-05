@@ -59,7 +59,7 @@ const SignIn = props => {
             <Row>
               <Col sm="12">
                 {/* RENDERING ORGANIZATION SPECIFIC LOGIN FORM */}
-                <OrgLogin />
+                <OrgLogin {...props} />
                 <RegisterButton />
               </Col>
             </Row>
@@ -68,7 +68,7 @@ const SignIn = props => {
             <Row>
               <Col sm="12">
                 {/* RENDERING SUPPORTER SPECIFIC LOGIN FORM */}
-                <SupporterLogin />
+                <SupporterLogin {...props} />
                 <RegisterButton />
               </Col>
             </Row>
