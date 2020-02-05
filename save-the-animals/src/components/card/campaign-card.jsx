@@ -16,7 +16,6 @@ const CampaignCard = (props) => {
 
   const [campaigns, setCampaigns] = useState([]);
   const [query, setQuery] = useState('');
-  const [filter, setFilter] = useState('');
 
   const toggle = () => setModal(!modal);
   const toggleEdit = () => {
@@ -39,7 +38,6 @@ const CampaignCard = (props) => {
         console.log("CANNOT RETRIEVE DATA", err);
       })
   }, [query])
-
 
 
   const handleChanges = (e) => {
