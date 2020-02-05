@@ -7,9 +7,9 @@ import {
   InputGroupAddon
 } from "reactstrap";
 import { connect } from "react-redux";
-import Loader from 'react-loader-spinner';
+import Loader from "react-loader-spinner";
 
-import Navigation from './Navigation';
+import Navigation from "./Navigation";
 import { createCampaignPost } from "../actions/createCampaignActions";
 
 const CreateCampaign = props => {
@@ -25,10 +25,14 @@ const CreateCampaign = props => {
   });
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [selected, setSelected] = useState("");
 
   const handleClick = e => {
     e.preventDefault();
+    console.log(e.target.value, "target val");
+    console.log(selected, "selected");
     setNewCampaign({ ...newCampaign, [e.target.name]: e.target.value });
+    setSelected(e.target.value);
   };
 
   const handleChanges = e => {
@@ -67,117 +71,124 @@ const CreateCampaign = props => {
   // console.log(props);
 
   return (
-<>
-<Navigation />
-    <div className="create-form">
-      <h2>Create A New Campaign</h2>
-      <form
-        onSubmit={(() => props.createCampaignPost(newCampaign), handleSubmit)}
-      >
-        <Input
-          type="text"
-          placeholder="Name Campaign"
-          name="title"
-          value={newCampaign.title}
-          onChange={handleChanges}
-        />
-        <Input
-          type="text"
-          placeholder="Species"
-          name="species"
-          value={newCampaign.species}
-          onChange={handleChanges}
-        />
-        <div className="image-description-cont">
-          <div className='image-cont'>
-          <label htmlFor='file'>Upload Image</label>
-          <input
-            className="image"
-            type="file"
-            id='file'
-            name="file"
-            placeholder="Upload Image"
-            onChange={uploadImage}
-          />
-          {loading ? (
-            <div className='loader'>
-            <Loader type="RevolvingDot"
-            color="#37ec7e"
-            height={100}
-            width={100}
-            timeout={3000} //3 secs
-            />    
-            </div>        
-          ) : (
-            <img src={image} style={{ width: "300px" }} />
-          )}
-          </div>
-          <textarea
-            className="description"
+    <>
+      <Navigation />
+      <div className="create-form">
+        <h2>Create A New Campaign</h2>
+        <form
+          onSubmit={(() => props.createCampaignPost(newCampaign), handleSubmit)}
+        >
+          <Input
             type="text"
-            placeholder="Tell us what's happening..."
-            name="description"
-            value={newCampaign.description}
+            placeholder="Name Campaign"
+            name="title"
+            value={newCampaign.title}
             onChange={handleChanges}
           />
-        </div>
-        <Input
-          type="text"
-          placeholder="Location"
-          name="location"
-          value={newCampaign.location}
-          onChange={handleChanges}
-        />
-        <ListGroup>
-          <h3>Urgency Level</h3>
-          <p>Select One. This can always be changed later.</p>
-          <ListGroupItem
-            onClick={handleClick}
-            name="urgency"
-            value="critical"
-            className="critical"
-            tag="button"
-            action
-          >
-            Critical
-          </ListGroupItem>
+          <Input
+            type="text"
+            placeholder="Species"
+            name="species"
+            value={newCampaign.species}
+            onChange={handleChanges}
+          />
+          <div className="image-description-cont">
+            <div className="image-cont">
+              <label htmlFor="file">Upload Image</label>
+              <input
+                className="image"
+                type="file"
+                id="file"
+                name="file"
+                placeholder="Upload Image"
+                onChange={uploadImage}
+              />
+              {loading ? (
+                <div className="loader">
+                  <Loader
+                    type="RevolvingDot"
+                    color="#37ec7e"
+                    height={100}
+                    width={100}
+                    timeout={3000} //3 secs
+                  />
+                </div>
+              ) : (
+                <img src={image} style={{ width: "300px" }} />
+              )}
+            </div>
+            <textarea
+              className="description"
+              type="text"
+              placeholder="Tell us what's happening..."
+              name="description"
+              value={newCampaign.description}
+              onChange={handleChanges}
+            />
+          </div>
+          <Input
+            type="text"
+            placeholder="Location"
+            name="location"
+            value={newCampaign.location}
+            onChange={handleChanges}
+          />
+          <ListGroup>
+            <h3>Urgency Level</h3>
+            <p>Select One. This can always be changed later.</p>
+            <ListGroupItem
+              onClick={handleClick}
+              name="urgency"
+              value="critical"
+              className={`critical ${
+                selected === "critical" ? "selected" : ""
+              }`}
+              tag="button"
+              action
+            >
+              Critical
+            </ListGroupItem>
             <ListGroupItem
               onClick={handleClick}
               name="urgency"
               value="urgent"
-              className="urgent"
+              className={`urgent ${selected === "urgent" ? "selected" : ""}`}
               tag="button"
               action
             >
               Urgent
-          </ListGroupItem>
+            </ListGroupItem>
             <ListGroupItem
               onClick={handleClick}
               name="urgency"
               value="pressing"
-              className="pressing"
+              className={`pressing ${
+                selected === "pressing" ? "selected" : ""
+              }`}
               tag="button"
               action
             >
               Pressing
-          </ListGroupItem>
+            </ListGroupItem>
             <ListGroupItem
               onClick={handleClick}
               name="urgency"
               value="longterm"
-              className="longterm"
+              className={`longterm ${
+                selected === "longterm" ? "selected" : ""
+              }`}
               tag="button"
               action
             >
               Longterm
-          </ListGroupItem>
+            </ListGroupItem>
           </ListGroup>
           <InputGroup>
             <InputGroupAddon addonType="prepend">$</InputGroupAddon>
             <Input
               placeholder="Funding Goal"
               min={0}
-              max={100}
+              max={10000}
               type="number"
               step="1"
               name="goal"
@@ -191,11 +202,11 @@ const CreateCampaign = props => {
             value={newCampaign.deadline}
             onChange={handleChanges}
           />
-        <button type="submit" className="submit-button">
-          Create Campaign
-        </button>
-      </form>
-    </div>
+          <button type="submit" className="submit-button">
+            Create Campaign
+          </button>
+        </form>
+      </div>
     </>
   );
 };

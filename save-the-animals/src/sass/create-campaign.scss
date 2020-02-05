@@ -1,12 +1,10 @@
 .create-form {
   display: flex;
   flex-direction: column;
-  // height: 100vh;
   width: 50%;
   margin: 0 auto;
   background-color: white;
   padding: 2%;
-  border-radius: 5px;
 
   h2 {
     text-align: center;
@@ -21,7 +19,7 @@
     .image-description-cont {
       display: flex;
       justify-content: space-evenly;
-      
+      margin: 1% auto;
       height: 200px;
       width: 100%;
 
@@ -30,13 +28,11 @@
         border-right: none;
         border-radius: 5px 0 0 5px;
         width: 300px;
-       
 
         label {
           cursor: pointer;
           position: absolute;
           visibility: hidden;
-        
           margin: 0;
           border: 2px solid;
           color: white;
@@ -46,7 +42,7 @@
           border-radius: 30px;
           padding: 0.5%;
           left: 595px;
-          top: 370px;
+          top: 345px;
         }
 
         &:hover {
@@ -70,7 +66,6 @@
         }
 
         img {
-          // border: 1px solid red;
           max-height: 100%;
           object-fit: cover;
           overflow: hidden;
@@ -80,7 +75,7 @@
       .description {
         height: 100%;
         width: 65.7%;
-        // width: auto;
+
         margin: 0;
         border-radius: 0px 5px 5px 0px;
         border: 1px solid #ced4da;
@@ -91,15 +86,16 @@
 
     input {
       border-radius: 5px;
-      margin: 2% auto;
+      margin: 1% auto;
     }
 
     ul {
-      margin: 2% 0;
+      margin: 1% 0;
     }
 
     .list-group-item {
       font-weight: bold;
+      font-size: 1.2rem;
     }
 
     .urgent {
@@ -118,15 +114,17 @@
       color: $longterm-green;
     }
 
-  
-     
-      .input-group {
-        margin: 2% auto;
-        input {
-          margin: 0;
-        }
+    .selected {
+      border: 2px solid $gray;
     }
-    
+
+    .input-group {
+      margin: 2% auto;
+      input {
+        margin: 0;
+      }
+    }
+
     .submit-button {
       background-color: $green;
       color: white;
