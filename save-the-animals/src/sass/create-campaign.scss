@@ -20,9 +20,18 @@
 
     .image-description-cont {
       display: flex;
+      border: 1px solid red;
 
       label {
         cursor: pointer;
+        position: absolute;
+        visibility: hidden;
+      }
+
+      &:hover {
+        label {
+          visibility: initial;
+        }
       }
 
       .description {
