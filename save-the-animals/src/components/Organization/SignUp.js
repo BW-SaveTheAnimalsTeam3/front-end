@@ -14,19 +14,19 @@ const OrgSignUp = props => {
     state: ""
   });
 
-    const handleSubmit = e => {
-      e.preventDefault();
-      props.history.push('/')
-    };
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.history.push("/");
+  };
 
   const handleChanges = e => {
     e.preventDefault();
     setOrgSignUp({ ...orgSignUp, [e.target.name]: e.target.value });
   };
-  console.log(orgSignUp)
+  console.log(orgSignUp);
 
   return (
-    <form onSubmit={() => props.registrationPost(orgSignUp), handleSubmit}>
+    <form onSubmit={(() => props.registrationPost(orgSignUp), handleSubmit)}>
       <label htmlFor="organizationName"></label>
       <input
         type="text"
@@ -36,7 +36,6 @@ const OrgSignUp = props => {
         value={orgSignUp.organizationName}
         required
       />
-
       <label htmlFor="email"></label>
       <input
         type="text"
@@ -46,13 +45,17 @@ const OrgSignUp = props => {
         value={orgSignUp.email}
         required
       />
-
-<label htmlFor="password"></label>
-            <input type="password" placeholder="Password" name='password' onChange={handleChanges} value={orgSignUp.password} required />4
-
+      <label htmlFor="password"></label>
+      <input
+        type="password"
+        placeholder="Password"
+        name="password"
+        onChange={handleChanges}
+        value={orgSignUp.password}
+        required
+      />
       <label htmlFor="confirm-password"></label>
       <input type="password" placeholder="Confirm Password" required />
-
       <label htmlFor="cityName"></label>
       <input
         type="text"
@@ -62,7 +65,6 @@ const OrgSignUp = props => {
         value={orgSignUp.city}
         required
       />
-
       <label htmlFor="state"></label>
       <select
         name="state"
@@ -127,7 +129,6 @@ const OrgSignUp = props => {
         <option value="WI">Wisconsin</option>
         <option value="WY">Wyoming</option>
       </select>
-
       <button>Create an Account</button>
     </form>
   );
