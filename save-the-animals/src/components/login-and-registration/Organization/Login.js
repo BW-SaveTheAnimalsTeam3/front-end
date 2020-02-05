@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import { loginAuth } from '../../../actions/loginActions';
 
@@ -8,13 +9,17 @@ import { loginAuth } from '../../../actions/loginActions';
 
 const OrgLogin = props => {
   const [orgLogin, setOrgLogin] = useState({
-    email: "",
+    username: "",
     password: ""
   });
 
   const handleSubmit = e => {
       e.preventDefault();
-    props.history.push('/organization')
+    axios
+      .post()
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+    // props.history.push('/organization')
   };
 
   const handleChanges = e => {
@@ -26,13 +31,13 @@ const OrgLogin = props => {
   return (
     <div>
       <form onSubmit={() => props.loginAuth(orgLogin), handleSubmit}>
-        <label htmlFor="email"></label>
+        <label htmlFor="username"></label>
         <input
-          type="email"
-          name="email"
-          placeholder="email"
+          type="username"
+          name="username"
+          placeholder="username"
           onChange={handleChanges}
-          value={orgLogin.email}
+          value={orgLogin.username}
           required
         />
         <label htmlFor="password"></label>
@@ -44,7 +49,7 @@ const OrgLogin = props => {
           value={orgLogin.password}
           required
         />
-       <button><Link to='/organization'>Sign In</Link></button>
+       <button>Sign In</button>
       </form>
     </div>
   );

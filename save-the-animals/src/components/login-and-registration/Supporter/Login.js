@@ -3,20 +3,24 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { loginSupporterAuth } from '../../../actions/loginActions';
+import axios from "axios";
 
 // USED FOR SUPPORTERS WITH EXISTING LOGIN CREDENTIALS
 
 const SupporterLogin = props => {
   const [supporterLogin, setSupporterLogin] = useState({
-    email: "",
+    username: "",
     password: ""
   });
 
   const handleSubmit = e => {
     e.preventDefault();
-    
-    props.loginSupporterAuth(supporterLogin);
-    props.history.push("/organization");
+    axios
+      .post(`https://save-the-animals-backend.herokuapp.com/api/users/login`, supporterLogin)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+    // props.loginSupporterAuth(supporterLogin);
+    // props.history.push("/organization");
   };
 
   const handleChanges = e => {
@@ -30,11 +34,11 @@ const SupporterLogin = props => {
     <form onSubmit={handleSubmit}>
       <label htmlFor="email"></label>
       <input
-        type="email"
-        placeholder="email"
-        name="email"
+        type="text"
+        placeholder="username"
+        name="username"
         onChange={handleChanges}
-        value={supporterLogin.email}
+        value={supporterLogin.username}
         required
       />
       <label htmlFor="password"></label>
@@ -46,9 +50,12 @@ const SupporterLogin = props => {
         value={supporterLogin.password}
         required
       />
-      <button><Link to='/supporter'>Sign In</Link></button>
+      <button>Sign In</button>
     </form>
   );
 };
 
 export default connect(null, { loginSupporterAuth }) (SupporterLogin);
+
+
+//testSupporter
