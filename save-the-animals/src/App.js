@@ -8,15 +8,16 @@ import CreateCampaign from "./components/create-campaign";
 import SignIn from "./components/login-and-registration/Forms/SignIn";
 import RegisterAccount from "./components/login-and-registration/Forms/RegisterAccount";
 import SupporterProfile from './components/profile/supporter-profile';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
     <div className="App">
       <Route exact path="/" component={SignIn} />
       <Route exact path="/register" component={RegisterAccount} />
-      <Route path="/organization" component={OrganizationProfile} />
-      <Route path="/supporter" component={SupporterProfile} />
-      <Route path="/create-campaign" component={CreateCampaign} />
+      <PrivateRoute path="/organization" component={OrganizationProfile} />
+      <PrivateRoute path="/supporter" component={SupporterProfile} />
+      <PrivateRoute path="/create-campaign" component={CreateCampaign} />
     </div>
   );
 }
