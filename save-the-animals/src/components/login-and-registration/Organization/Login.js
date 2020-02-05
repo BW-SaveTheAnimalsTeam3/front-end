@@ -55,4 +55,4 @@ const OrgLogin = props => {
   );
 };
 
-export default connect(null, { loginAuth }) (OrgLogin);
+export default connect(null, { loginAuth })(OrgLogin);
