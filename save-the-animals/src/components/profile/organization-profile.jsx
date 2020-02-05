@@ -30,7 +30,7 @@ const OrganizationProfile = (props) => {
           <h3 onClick={handleClick}>Start New Campaign</h3>
         </div>
         <div className='feed'>
-          <CampaignCard />
+          <CampaignCard {...props} />
         </div>
       </div>
     </>

@@ -7,10 +7,17 @@ import {
   Progress
 } from "reactstrap";
 
-const CampaignCard = () => {
+import  EditCampaign  from '../edit-campaign';
+
+const CampaignCard = (props) => {
   const [modal, setModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+  const toggleEdit = () => {
+    setModal(false);
+    setEditModal(!editModal);
+  };
 
   return (
     <div className="card">
@@ -48,14 +55,21 @@ const CampaignCard = () => {
               <p>$825 / $1100</p>
             </div>
             <Progress value={75}>75%</Progress>
-            <p><span>Deadline:</span> 02/03/2020 7:30 PM</p>
+            <p>
+              <span>Deadline:</span> 02/03/2020 7:30 PM
+            </p>
           </div>
         </ModalBody>
         <ModalFooter>
-          <button className="edit-button">Edit Campaign</button>
+          <button className="edit-button" onClick={toggleEdit}>
+            Edit Campaign
+          </button>
           <button className="delete-button">Delete Campaign</button>
         </ModalFooter>
       </Modal>
+      {editModal === true && (
+        <EditCampaign {...props} />
+      )}
     </div>
   );
 };
