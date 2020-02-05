@@ -65,6 +65,7 @@ const EditCampaign = (props) => {
           <ModalHeader>
             Save This Turtle
             <p>South Palm Beach</p>
+            <button onClick={() => editCampaignModal(!props.openModal)}>Close</button>
           </ModalHeader>
           <ModalBody>
             <form onSubmit={handleSubmit}>

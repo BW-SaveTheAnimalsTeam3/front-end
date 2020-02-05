@@ -5,6 +5,7 @@ import {
   EDIT_MODAL_STATE
 } from "./types";
 
-export const editCampaignModal = () => {
-    return { type: EDIT_MODAL_STATE, payload: true }
+export const editCampaignModal = bool => {
+    console.log(bool)
+    return { type: 'EDIT_MODAL_STATE', payload: bool }
 }
