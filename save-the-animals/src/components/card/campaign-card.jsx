@@ -16,6 +16,7 @@ const CampaignCard = (props) => {
 
   const [campaigns, setCampaigns] = useState([]);
   const [query, setQuery] = useState('');
+  const [filter, setFilter] = useState('');
 
   const toggle = () => setModal(!modal);
   const toggleEdit = () => {
@@ -27,15 +28,19 @@ const CampaignCard = (props) => {
     axios
       .get('https://save-the-animals-backend.herokuapp.com/api/campaigns')
       .then(res => {
-        const searchResults = res.data.filter(campaign =>
-          campaign.campaign.toLowerCase().includes(query.toLowerCase())
-        );
+        const searchResults = res.data.filter(campaign => {
+          if (campaign.campaign.toLowerCase().includes(query.toLowerCase()) || campaign.location.toLowerCase().includes(query.toLowerCase()) || campaign.description.toLowerCase().includes(query.toLowerCase())) {
+            return true;
+          }
+        });
         setCampaigns(searchResults);
       })
       .catch(err => {
         console.log("CANNOT RETRIEVE DATA", err);
       })
   }, [query])
+
+
 
   const handleChanges = (e) => {
     setQuery(e.target.value);
