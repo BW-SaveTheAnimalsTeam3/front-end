@@ -7,8 +7,9 @@ import {
   InputGroupAddon
 } from "reactstrap";
 import { connect } from "react-redux";
-import Navigation from './Navigation';
+import Loader from 'react-loader-spinner';
 
+import Navigation from './Navigation';
 import { createCampaignPost } from "../actions/createCampaignActions";
 
 const CreateCampaign = props => {
@@ -88,6 +89,7 @@ const CreateCampaign = props => {
           onChange={handleChanges}
         />
         <div className="image-description-cont">
+          <div className='image-cont'>
           <label htmlFor='file'>Upload Image</label>
           <input
             className="image"
@@ -98,11 +100,19 @@ const CreateCampaign = props => {
             onChange={uploadImage}
           />
           {loading ? (
-            <h3>Loading...</h3>
+            <div className='loader'>
+            <Loader type="RevolvingDot"
+            color="#37ec7e"
+            height={100}
+            width={100}
+            timeout={3000} //3 secs
+            />    
+            </div>        
           ) : (
             <img src={image} style={{ width: "300px" }} />
           )}
-          <Input
+          </div>
+          <textarea
             className="description"
             type="text"
             placeholder="Tell us what's happening..."
@@ -181,13 +191,6 @@ const CreateCampaign = props => {
             value={newCampaign.deadline}
             onChange={handleChanges}
           />
-        
-        <Input
-          type="datetime-local"
-          name="deadline"
-          value={newCampaign.deadline}
-          onChange={handleChanges}
-        />
         <button type="submit" className="submit-button">
           Create Campaign
         </button>
