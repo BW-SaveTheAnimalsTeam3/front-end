@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { loginAuth } from '../../actions/loginActions';
+import { loginAuth } from '../../../actions/loginActions';
 
 // USED FOR ORGANIZATIONS WITH EXISTING LOGIN CREDENTIALS
 

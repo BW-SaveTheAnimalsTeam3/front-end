@@ -15,7 +15,7 @@ import {
 import classnames from "classnames";
 import OrgSignUp from "../Organization/SignUp";
 import SupporterSignUp from "../Supporter/SignUp";
-import ExistingAccount from "../ExistingAccount";
+import ExistingAccount from "../../ExistingAccount";
 
 // MAIN FORM THAT IS RENDERING THE REGISTRATION VIEWS WHEN SWITCHING BETWEEN TABS
 

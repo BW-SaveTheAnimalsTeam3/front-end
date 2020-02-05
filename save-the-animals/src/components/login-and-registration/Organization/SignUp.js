@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { registrationPost } from "../../actions/registrationActions";
+import { registrationPost } from "../../../actions/registrationActions";
 
 // USED FOR ORGANIZATIONS THAT NEED TO CREATE AN ACCOUNT
 

@@ -5,8 +5,8 @@ import "./App.css";
 
 import OrganizationProfile from "./components/profile/organization-profile";
 import CreateCampaign from "./components/create-campaign";
-import SignIn from "./components/Forms/SignIn";
-import RegisterAccount from "./components/Forms/RegisterAccount";
+import SignIn from "./components/login-and-registration/Forms/SignIn";
+import RegisterAccount from "./components/login-and-registration/Forms/RegisterAccount";
 import SupporterProfile from './components/profile/supporter-profile';
 
 function App() {
