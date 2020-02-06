@@ -4,6 +4,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
   REGISTER_SUPPORTER_STORE_ID
+
 } from "./types";
 
 export const registrationStore = (id) => {

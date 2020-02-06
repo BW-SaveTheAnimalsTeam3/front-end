@@ -15,6 +15,7 @@ import Navigation from "./Navigation";
 import { createCampaignPost } from "../actions/createCampaignActions";
 
 const CreateCampaign = props => {
+  const history = useHistory();
   const [newCampaign, setNewCampaign] = useState({
     org_id: 1,
     campaign: "",
@@ -50,7 +51,9 @@ const CreateCampaign = props => {
       `https://save-the-animals-backend.herokuapp.com/api/campaigns/createNewCampaign`,
       newCampaign
     )
-    .then(res => console.log(res))
+    .then(res => {console.log(res)
+      history.push('/organization')
+    })
     .catch(err => console.log(err))
     // props.history.push("/organization");
   };
@@ -198,7 +201,7 @@ const CreateCampaign = props => {
             <Input
               placeholder="Funding Goal"
               min={0}
-              max={10000}
+              max={1000000}
               type="number"
               step="1"
               name="funding_goal"

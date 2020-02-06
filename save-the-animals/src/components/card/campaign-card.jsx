@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Modal,
   ModalHeader,
@@ -8,23 +8,20 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import axios from "axios";
+import { useHistory } from "react-router";
 
 import EditCampaign from "../edit-campaign";
 import {
   editCampaignGet,
-  editCampaignModal
+  editCampaignModal,
+  deleteCampaign
 } from "../../actions/editCampaignActions";
 
 const CampaignCard = props => {
   const [modal, setModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
-  const [modalState, setModalState] = useState({
-
-  })
-
-  useEffect(() => {
-   
-  },[])
+  const [modalState, setModalState] = useState({});
+  const history = useHistory();
 
   // const toggle = () => setModal(!modal);
   const toggleEdit = () => {
@@ -32,39 +29,42 @@ const CampaignCard = props => {
     setEditModal(!editModal);
   };
 
-  const handleClick = (e, id) => {
+  const handleEdit = id => {
     props.editCampaignModal(true);
     toggleEdit();
     props.editCampaignGet(id);
   };
 
-  const detailClick = (id) => {
+  const detailClick = id => {
     setModal(!modal);
-    console.log('this is the id', id)
-    axios 
-    .get(`https://save-the-animals-backend.herokuapp.com/api/campaigns/${id}`)
-    .then(res => {console.log(res)
-      setModalState(res.data)
-    })
-    .catch(err => console.log(err))
-  }
-
-  const handleDelete = id => {
+    console.log("this is the id", id);
     axios
-      .delete(`https://save-the-animals-backend.herokuapp.com/api/campaigns/${id}`)
-      .then(res => console.log(res))
+      .get(`https://save-the-animals-backend.herokuapp.com/api/campaigns/${id}`)
+      .then(res => {
+        console.log(res);
+        setModalState(res.data);
+      })
       .catch(err => console.log(err));
   };
-  console.log("props in campaign card", props);
-  console.log('modal state', modalState)
 
- 
+  const handleDelete = id => {
+    props.deleteCampaign(id);
+    setModal(!modal)
+    // history.push("/organization");
+    // axios
+    //   .delete(`https://save-the-animals-backend.herokuapp.com/api/campaigns/${id}`)
+    //   .then(res => console.log(res))
+    //   .catch(err => console.log(err));
+  };
+  console.log("props in campaign card", props);
+  console.log("modal state", modalState);
+
   return (
     <>
       {props.campaigns.map(campaign => {
         return (
           <div className="card" key={campaign.id}>
-            {console.log(campaign.id)}
+            {/* {console.log(campaign.id)} */}
             <h4>{campaign.campaign}</h4>
             <p className="location">{campaign.location}</p>
             <div className="status">Status: {campaign.urgency_level}</div>
@@ -74,8 +74,10 @@ const CampaignCard = props => {
                 alt="campaign image"
               />
             </div>
-            <button onClick={() => detailClick(campaign.id)}>View Details</button>
-            <Modal isOpen={modal} toggle={detailClick} >
+            <button onClick={() => detailClick(campaign.id)}>
+              View Details
+            </button>
+            <Modal isOpen={modal} toggle={detailClick}>
               <ModalHeader toggle={detailClick}>
                 {modalState.campaign}
                 <p>{modalState.location}</p>
@@ -102,15 +104,16 @@ const CampaignCard = props => {
                 </div>
               </ModalBody>
               <ModalFooter>
+                {console.log(modalState.id, "modal state")}
                 <button
                   className="edit-button"
-                  onClick={() => handleClick(campaign.id)}
+                  onClick={() => handleEdit(modalState.id)}
                 >
                   Edit Campaign
                 </button>
                 <button
                   className="delete-button"
-                  onClick={() => handleDelete(campaign.id)}
+                  onClick={() => handleDelete(modalState.id)}
                 >
                   Delete Campaign
                 </button>
@@ -124,10 +127,11 @@ const CampaignCard = props => {
   );
 };
 
-export default connect(null, { editCampaignGet, editCampaignModal })(
-  CampaignCard
-);
-
+export default connect(null, {
+  editCampaignGet,
+  editCampaignModal,
+  deleteCampaign
+})(CampaignCard);
 
 // import React, { useState } from "react";
 
@@ -152,12 +156,9 @@ export default connect(null, { editCampaignGet, editCampaignModal })(
 //     console.log(e.target.id)
 //     setOpenDetails(true)
 //   }
-  
 
-  
 //   console.log("props in campaign card", props);
 
- 
 //   return (
 //     <>
 //       {props.campaigns.map(campaign => {
@@ -174,11 +175,11 @@ export default connect(null, { editCampaignGet, editCampaignModal })(
 //               />
 //             </div>
 //             <button id={campaign.id, 'button id'} onClick={handleClick}>View Details</button>
-            
+
 //           </div>
 //         );
 //       })}
-      
+
 //       {openDetails === true && <CardModal key={props.campaigns.id} campaign={props.campaigns}/>}
 //       {editModal === true && <EditCampaign />}
 //     </>
@@ -188,6 +189,3 @@ export default connect(null, { editCampaignGet, editCampaignModal })(
 // export default connect(null, { editCampaignGet, editCampaignModal })(
 //   CampaignCard
 // );
-
-
-
