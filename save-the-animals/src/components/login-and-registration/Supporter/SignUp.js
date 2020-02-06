@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 
-import { registrationSupporterPost } from "../../../actions/registrationActions";
+import { registrationSupporterPost, registrationStore } from "../../../actions/registrationActions";
 
 // USED FOR SUPPORTERS WHO NEED TO CREATE AN ACCOUNT
 
@@ -13,6 +13,7 @@ const SupporterSignUp = props => {
     // city: "",
     // state: ""
   });
+  const  [toggle, setToggle] = useState(false)
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -20,7 +21,15 @@ const SupporterSignUp = props => {
       `https://save-the-animals-backend.herokuapp.com/api/users/register`,
       supporterSignUp
     )
-    .then(res => console.log(res))
+    .then(res => {
+      console.log(res)
+      props.registrationStore(res.data.user_id)
+      if (toggle === true) {
+      props.history.push('/register-organization')
+      } else {
+        props.history.push('/supporter')
+      }
+    })
     .catch(err => console.log(err))
     // props.history.push("/");
   };
@@ -30,7 +39,12 @@ const SupporterSignUp = props => {
     setSupporterSignUp({ ...supporterSignUp, [e.target.name]: e.target.value });
   };
 
+  const toggleCheckbox = () => {
+    setToggle(!toggle)
+  }
+
   console.log(supporterSignUp);
+  console.log(toggle)
 
   return (
     <form
@@ -57,6 +71,11 @@ const SupporterSignUp = props => {
         onChange={handleChanges}
         value={supporterSignUp.password}
         required
+      />
+      <label htmlFor='checkbox'>I am an Organization</label>
+      <input type='checkbox' 
+      id='checkbox'
+      onChange={toggleCheckbox}
       />
 {/* 
       <label htmlFor="confirm-password"></label>
@@ -146,4 +165,4 @@ const SupporterSignUp = props => {
   );
 };
 
-export default connect(null, { registrationSupporterPost })(SupporterSignUp);
+export default connect(null, { registrationSupporterPost, registrationStore })(SupporterSignUp);

@@ -16,7 +16,7 @@ const OrgLogin = props => {
   const handleSubmit = e => {
       e.preventDefault();
     axios
-      .post()
+      .post(`https://save-the-animals-backend.herokuapp.com/api/users/login`, orgLogin)
       .then(res => console.log(res))
       .catch(err => console.log(err))
     // props.history.push('/organization')

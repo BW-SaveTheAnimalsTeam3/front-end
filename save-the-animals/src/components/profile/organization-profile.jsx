@@ -17,7 +17,7 @@ const OrganizationProfile = (props) => {
   // AXIOS CALL HERE WHEN ENDPOINTS ARE READY
   useEffect(() => {
     axios
-      .get('https://save-the-animals-backend.herokuapp.com/api/campaigns')
+      .get('https://save-the-animals-backend.herokuapp.com/api/campaigns/organizations/1')
       .then(res => {
         // console.log('.get response', res)
         setCampaigns(res.data);

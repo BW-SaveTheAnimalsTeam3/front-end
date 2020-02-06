@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   ModalHeader,
@@ -7,35 +7,64 @@ import {
   Progress
 } from "reactstrap";
 import { connect } from "react-redux";
-
+import axios from "axios";
 
 import EditCampaign from "../edit-campaign";
-import { editCampaignGet, editCampaignModal } from "../../actions/editCampaignActions";
+import {
+  editCampaignGet,
+  editCampaignModal
+} from "../../actions/editCampaignActions";
 
 const CampaignCard = props => {
   const [modal, setModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const [modalState, setModalState] = useState({
 
-  const toggle = () => setModal(!modal);
+  })
+
+  useEffect(() => {
+   
+  },[])
+
+  // const toggle = () => setModal(!modal);
   const toggleEdit = () => {
     setModal(false);
     setEditModal(!editModal);
   };
 
-  const handleClick = ( id) => {
-    // e.preventDefault();
-    
-     
-     props.editCampaignModal(true)
-     toggleEdit()
-     props.editCampaignGet(id);
+  const handleClick = (e, id) => {
+    props.editCampaignModal(true);
+    toggleEdit();
+    props.editCampaignGet(id);
   };
 
+  const detailClick = (id) => {
+    setModal(!modal);
+    console.log('this is the id', id)
+    axios 
+    .get(`https://save-the-animals-backend.herokuapp.com/api/campaigns/${id}`)
+    .then(res => {console.log(res)
+      setModalState(res.data)
+    })
+    .catch(err => console.log(err))
+  }
+
+  const handleDelete = id => {
+    axios
+      .delete(`https://save-the-animals-backend.herokuapp.com/api/campaigns/${id}`)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+  console.log("props in campaign card", props);
+  console.log('modal state', modalState)
+
+ 
   return (
     <>
       {props.campaigns.map(campaign => {
         return (
           <div className="card" key={campaign.id}>
+            {console.log(campaign.id)}
             <h4>{campaign.campaign}</h4>
             <p className="location">{campaign.location}</p>
             <div className="status">Status: {campaign.urgency_level}</div>
@@ -45,15 +74,15 @@ const CampaignCard = props => {
                 alt="campaign image"
               />
             </div>
-            <button onClick={toggle}>View Details</button>
-            <Modal isOpen={modal} toggle={toggle}>
-              <ModalHeader toggle={toggle}>
-                {campaign.campaign}
-                <p>{campaign.location}</p>
+            <button onClick={() => detailClick(campaign.id)}>View Details</button>
+            <Modal isOpen={modal} toggle={detailClick} >
+              <ModalHeader toggle={detailClick}>
+                {modalState.campaign}
+                <p>{modalState.location}</p>
               </ModalHeader>
 
               <ModalBody>
-                <div className="status">Status: {campaign.urgency_level}</div>
+                <div className="status">Status: {modalState.urgency_level}</div>
                 <div className="image-container">
                   <img
                     src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
@@ -61,22 +90,30 @@ const CampaignCard = props => {
                   />
                 </div>
                 <div className="bottom-content">
-                  <p>{campaign.description}</p>
+                  <p>{modalState.description}</p>
                   <div className="progress-info">
                     <span>Progress Toward Goal:</span>
-                    <p>{campaign.funding_goal}</p>
+                    <p>{modalState.funding_goal}</p>
                   </div>
                   <Progress value={75}>75%</Progress>
                   <p>
-                    <span>Deadline:</span> {campaign.deadline}
+                    <span>Deadline:</span> {modalState.deadline}
                   </p>
                 </div>
               </ModalBody>
               <ModalFooter>
-                <button className="edit-button" onClick={() => handleClick(campaign.id)}>
+                <button
+                  className="edit-button"
+                  onClick={() => handleClick(campaign.id)}
+                >
                   Edit Campaign
                 </button>
-                <button className="delete-button">Delete Campaign</button>
+                <button
+                  className="delete-button"
+                  onClick={() => handleDelete(campaign.id)}
+                >
+                  Delete Campaign
+                </button>
               </ModalFooter>
             </Modal>
           </div>
@@ -87,4 +124,70 @@ const CampaignCard = props => {
   );
 };
 
-export default connect(null, { editCampaignGet, editCampaignModal })(CampaignCard);
+export default connect(null, { editCampaignGet, editCampaignModal })(
+  CampaignCard
+);
+
+
+// import React, { useState } from "react";
+
+// import { connect } from "react-redux";
+// import axios from "axios";
+
+// import EditCampaign from "../edit-campaign";
+// import {
+//   editCampaignGet,
+//   editCampaignModal
+// } from "../../actions/editCampaignActions";
+// import CardModal from './card-modal';
+
+// const CampaignCard = props => {
+//   const [modal, setModal] = useState(false);
+//   const [editModal, setEditModal] = useState(false);
+//   const [openDetails, setOpenDetails] = useState(false)
+
+//   // const toggle = () => setOpenDetails(true);
+
+//   const handleClick = e => {
+//     console.log(e.target.id)
+//     setOpenDetails(true)
+//   }
+  
+
+  
+//   console.log("props in campaign card", props);
+
+ 
+//   return (
+//     <>
+//       {props.campaigns.map(campaign => {
+//         return (
+//           <div className="card" key={campaign.id}>
+//             {console.log(campaign.id)}
+//             <h4>{campaign.campaign}</h4>
+//             <p className="location">{campaign.location}</p>
+//             <div className="status">Status: {campaign.urgency_level}</div>
+//             <div className="image-container">
+//               <img
+//                 src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
+//                 alt="campaign image"
+//               />
+//             </div>
+//             <button id={campaign.id, 'button id'} onClick={handleClick}>View Details</button>
+            
+//           </div>
+//         );
+//       })}
+      
+//       {openDetails === true && <CardModal key={props.campaigns.id} campaign={props.campaigns}/>}
+//       {editModal === true && <EditCampaign />}
+//     </>
+//   );
+// };
+
+// export default connect(null, { editCampaignGet, editCampaignModal })(
+//   CampaignCard
+// );
+
+
+

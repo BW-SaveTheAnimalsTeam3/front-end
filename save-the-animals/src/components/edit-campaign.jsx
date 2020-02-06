@@ -23,7 +23,7 @@ const EditCampaign = props => {
   const [initialValue, setInitialValue] = useState({
     title: ''
   });
-  const { id } = useParams();
+//   const { id } = useParams();
 
 //   useEffect(() => {
 //       const itemToUpdate = props.find(thing => `${thing.id}` === id)
@@ -91,7 +91,7 @@ const EditCampaign = props => {
                 type="text"
                 placeholder="Name Campaign"
                 name="title"
-                value={initialValue.title}
+                value={props.title}
                 onChange={handleChanges}
               />
               <Input type="text" placeholder="Species" name="species" />
