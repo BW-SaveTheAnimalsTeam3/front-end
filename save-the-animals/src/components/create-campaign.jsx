@@ -16,11 +16,11 @@ import { createCampaignPost } from "../actions/createCampaignActions";
 import {registrationStore } from '../actions/registrationActions'
 
 const CreateCampaign = props => {
-  const user_id = localStorage.getItem('user_id')
-  console.log(user_id)
+  const org_id = localStorage.getItem('org_id')
+  console.log(org_id)
   const history = useHistory();
   const [newCampaign, setNewCampaign] = useState({
-    org_id: user_id,
+    org_id: org_id,
     campaign: "",
     location: "",
     // image_url: "",

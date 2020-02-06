@@ -56,11 +56,14 @@ const CampaignCard = props => {
     setModal(!modal);
   };
   console.log("props in campaign card", props);
-  // console.log("modal state", modalState);
+console.log(props.campaigns.id)
+localStorage.setItem('org_id', props.campaigns.id)
 
   const getCampaigns = () => {
     axios
-      .get(`https://save-the-animals-backend.herokuapp.com/api/campaigns/organizations/${props.campaigns.id}`)
+      .get(
+        `https://save-the-animals-backend.herokuapp.com/api/campaigns/organizations/${props.campaigns.id}`
+      )
       .then(res => {
         const searchResults = res.data.filter(campaign => {
           // FILTERING THROUGH API RESPONSE AND SETTING CAMPAIGNS STATE TO MATCH SEARCH QUERY
@@ -86,15 +89,7 @@ const CampaignCard = props => {
 
   return (
     <>
-      {/* <form className="search-form">
-        <input
-          type="text"
-          placeholder="Search Campaigns"
-          onChange={handleChanges}
-          value={query}
-        />
-      </form> */}
-      
+     
 
       {/* STYLING CAMPAIGN CARDS IN GRID FORMAT */}
       {/* <div className="grid-container"> */}
@@ -174,7 +169,9 @@ const CampaignCard = props => {
       })}
       {/* </div> */}
       {editModal === true && <EditCampaign />}
-      <button onClick={getCampaigns} class='getButton'>Display Campaigns</button>
+      <button onClick={getCampaigns} className="getButton">
+        Display Campaigns
+      </button>
     </>
   );
 };

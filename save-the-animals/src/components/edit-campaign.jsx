@@ -21,6 +21,7 @@ const EditCampaign = props => {
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState("");
   const [initialValue, setInitialValue] = useState({
+      org_id: props.org_id,
     campaign: props.campaign,
     location: props.location,
     description: props.description,
@@ -30,6 +31,7 @@ const EditCampaign = props => {
     deadline: props.deadline
   });
   console.log(initialValue);
+  console.log('props', props.propsState)
 
   const handleClick = e => {
     e.preventDefault();
@@ -52,6 +54,8 @@ const EditCampaign = props => {
     props.editCampaignPut(initialValue, props.id)
     
   };
+
+  console.log('type of', typeof props.id)
 
   const uploadImage = async e => {
     const files = e.target.files;
@@ -92,16 +96,17 @@ const EditCampaign = props => {
             <form onSubmit={handleSubmit}>
               <Input
                 type="text"
-                placeholder="Name Campaign"
+                placeholder={props.campaign}
                 name="campaign"
                 value={initialValue.campaign}
                 onChange={handleChanges}
               />
               <Input
                 type="text"
-                placeholder="Species"
+                placeholder={props.species}
                 name="species"
-                value={props.species}
+                value={initialValue.species}
+                onChange={handleChanges}
               />
               <div className="image-description-cont">
                 <div className="image-cont">
@@ -131,16 +136,18 @@ const EditCampaign = props => {
                 <textarea
                   className="description"
                   type="text"
-                  placeholder="Tell us what's happening..."
+                  placeholder={props.description}
                   name="description"
-                  value={props.description}
+                  value={initialValue.description}
+                onChange={handleChanges}
                 />
               </div>
               <Input
                 type="text"
-                placeholder="Location"
+                placeholder={props.location}
                 name="location"
-                value={props.location}
+                value={initialValue.location}
+                onChange={handleChanges}
               />
               <ListGroup>
                 <h3>Urgency Level</h3>
@@ -197,16 +204,17 @@ const EditCampaign = props => {
               <InputGroup>
                 <InputGroupAddon addonType="prepend">$</InputGroupAddon>
                 <Input
-                  placeholder="Funding Goal"
+                  placeholder={props.funding_goal}
                   min={0}
                   max={1000000}
                   type="number"
                   step="1"
-                  name="goal"
-                  value={props.funding_goal}
+                  name="funding_goal"
+                  value={initialValue.funding_goal}
+                onChange={handleChanges}
                 />
               </InputGroup>
-              <Input type="datetime-local" name="deadline" />
+              <Input type="datetime-local" name="deadline" value={initialValue.deadline} onChange={handleChanges} />
               <button type="submit" className="submit-button" onClick={() => editClick}>
                 Apply Changes
               </button>
@@ -222,6 +230,7 @@ const mapStateToProps = state => {
   console.log(state.editCampaignReducer, "state");
   return {
     openModal: state.editCampaignReducer.isOpen,
+    org_id: state.editCampaignReducer.campaign.org_id,
     campaign: state.editCampaignReducer.campaign.campaign,
     species: state.editCampaignReducer.campaign.species,
     location: state.editCampaignReducer.campaign.location,
@@ -229,7 +238,8 @@ const mapStateToProps = state => {
     urgency_level: state.editCampaignReducer.campaign.urgency_level,
     funding_goal: state.editCampaignReducer.campaign.funding_goal,
     deadline: state.editCampaignReducer.campaign.deadline,
-    id: state.editCampaignReducer.campaign.id
+    id: state.editCampaignReducer.campaign.id,
+    propsState: state.editCampaignReducer.campaign
   };
 };
 
