@@ -14,7 +14,7 @@ export default function Navigation() {
 
 
     return (
-        <div>
+        <div className='nav-cont'>
             <ul className="nav-list">
                 <a href="https://savetheanimalsweb28.netlify.com/" className="menu-item">Home</a>
                 <Link to='/dashboard' className='menu-item'>Dashboard</Link>

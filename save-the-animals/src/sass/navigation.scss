@@ -1,9 +1,15 @@
+.nav-cont {
+    height: 10vh;
+}
+
 .nav-list {
     display: flex;
     justify-content: flex-end;
-    padding: 1% 0;
+    // align-items: center;
+    // padding: 1% 0;
     margin: auto;
     background-color: $longterm-green;
+    height: 100%;
 
 
     button {
@@ -14,11 +20,19 @@
 
     .menu-item {
         margin: 0 2%;
+        display: flex;
+        align-items: center;
         color: black;
+        font-size: 1.9rem;
+        height: 100%;
+        border-bottom: 3px solid $longterm-green;
+        padding: 0 1%;
 
         &:hover {
             color: white;
             text-decoration: none;
+            border-bottom: 3px solid white;
+            background-color: #9cb973;
         }
 
         @media(max-width: 800px) {
