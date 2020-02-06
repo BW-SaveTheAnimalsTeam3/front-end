@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {useHistory} from 'react-router'
+import { useHistory } from 'react-router'
 
 
 
 export default function Navigation() {
     const history = useHistory();
 
-const logout = () => {
-    localStorage.clear('token');
-    history.push('/')
-}
+    const logout = () => {
+        localStorage.clear('token');
+        history.push('/')
+    }
+
 
     return (
         <div>

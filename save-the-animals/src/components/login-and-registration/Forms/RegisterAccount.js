@@ -12,10 +12,12 @@ import {
   Row,
   Col
 } from "reactstrap";
+import { TweenLite, Linear } from 'gsap';
 import classnames from "classnames";
 import OrgSignUp from "../Organization/SignUp";
 import SupporterSignUp from "../Supporter/SignUp";
 import ExistingAccount from "../ExistingAccount";
+
 
 // MAIN FORM THAT IS RENDERING THE REGISTRATION VIEWS WHEN SWITCHING BETWEEN TABS
 
@@ -26,8 +28,19 @@ const RegisterAccount = props => {
     if (activeTab !== tab) setActiveTab(tab);
   };
 
+  // GREENSOCK ANIMATIONS
+
+  function fadeIn() {
+    const el = document.querySelector('.registration');
+    const duration = 0.75;
+    const from = { opacity: 0, ease: Linear.easeIn };
+    const to = { opacity: 1 };
+    TweenLite.fromTo(el, duration, from, to);
+  }
+
+
   return (
-    <div className="form-container">
+    <div className="form-container" onLoad={fadeIn()}>
       <div className="registration">
         <h4 className='form-heading'>Register</h4>
         <Nav tabs>
@@ -57,7 +70,7 @@ const RegisterAccount = props => {
             <Row>
               <Col sm="12">
                 {/* RENDERING ORGANIZATION SPECIFIC SIGNUP FORM */}
-                <OrgSignUp {...props}/>
+                <OrgSignUp {...props} />
                 <ExistingAccount />
               </Col>
             </Row>

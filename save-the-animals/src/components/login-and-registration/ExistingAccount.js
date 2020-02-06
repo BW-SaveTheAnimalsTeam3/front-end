@@ -8,7 +8,7 @@ const ExistingAccount = () => {
 
 
     return (
-        <div>
+        <div className="change-form">
             <h2>Already Have An Account?</h2>
             <Link to='/'>Login Here</Link>
         </div>

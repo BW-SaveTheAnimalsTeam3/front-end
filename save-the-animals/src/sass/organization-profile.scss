@@ -1,6 +1,10 @@
 .profile {
-  width: 45%;
+  width: 100%;
   margin: 0 auto;
+
+  @media(max-width: 800px) {
+    width: 100%;
+  }
 
   .user-info {
     display: flex;

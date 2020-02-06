@@ -3,7 +3,8 @@
     justify-content: flex-end;
     padding: 1% 0;
     margin: auto;
-    background-color: $green;
+    background-color: $longterm-green;
+
 
     .menu-item {
         padding: 0 2%;
@@ -11,6 +12,18 @@
 
         &:hover {
             color: white;
+            text-decoration: none;
+        }
+
+        @media(max-width: 800px) {
+            font-size: 1rem;
+            padding: 2%;
         }
     }
+
+    button {
+        background: none;
+        border: none;
+    }
+
 }

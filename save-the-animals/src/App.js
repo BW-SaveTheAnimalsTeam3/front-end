@@ -12,8 +12,11 @@ import Dashboard from './components/dashboard';
 import PrivateRoute from './components/PrivateRoute';
 import RegisterOrganization from './components/login-and-registration/Organization/register'
 
+
+
+
 function App() {
-  
+
   return (
     <div className="App">
       <Route exact path="/" component={SignIn} />
