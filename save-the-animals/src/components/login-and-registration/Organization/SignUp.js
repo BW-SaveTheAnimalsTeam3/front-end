@@ -17,14 +17,14 @@ const OrgSignUp = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    axios.post(
-      `https://save-the-animals-backend.herokuapp.com/api/users/register/organizations`
-    )
+    axios
+      .post(
+        `https://save-the-animals-backend.herokuapp.com/api/users/register/organizations`
+      )
       .then(res => {
-        console.log(res)
-
+        console.log(res);
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
     // props.history.push("/");
   };
 

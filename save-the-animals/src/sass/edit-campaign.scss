@@ -1,142 +1,137 @@
 .modal-body {
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    text-align: center;
+  }
+
+  form {
+    height: 100%;
     display: flex;
     flex-direction: column;
-    // width: 50%;
-    // margin: 0 auto;
-    // background-color: white;
-    // padding: 2%;
-  
-    h2 {
-      text-align: center;
-    }
-  
-    form {
-      height: 100%;
+    justify-content: space-evenly;
+
+    .image-description-cont {
       display: flex;
-      flex-direction: column;
       justify-content: space-evenly;
-  
-      .image-description-cont {
-        display: flex;
-        justify-content: space-evenly;
-        margin: 1% auto;
-        height: 200px;
-        width: 100%;
-  
-        .image-cont {
-          border: 1px solid #ced4da;
-          border-right: none;
-          border-radius: 5px 0 0 5px;
-          width: 300px;
-  
-          label {
-            cursor: pointer;
-            position: absolute;
-            visibility: hidden;
-            margin: 0;
-            border: 2px solid;
-            color: white;
-            font-weight: bold;
-            background-color: $green;
-            border: 2px solid $gray;
-            border-radius: 30px;
-            padding: 1%;
-            left: 70px;
-            top: 194px;
-          }
-  
-          &:hover {
-            label {
-              visibility: initial;
-            }
-          }
-  
-          .image {
-            width: 0.1px;
-            height: 0.1px;
-            opacity: 0;
-            overflow: hidden;
-            position: absolute;
-            z-index: -1;
-          }
-  
-          .loader {
-            text-align: center;
-            margin-top: 20%;
-          }
-  
-          img {
-              min-height: 100%;
-            max-height: 100%;
-            object-fit: cover;
-            overflow: hidden;
-          }
-        }
-  
-        .description {
-          height: 100%;
-          width: 65.7%;
-  
+      margin: 1% auto;
+      height: 200px;
+      width: 100%;
+
+      .image-cont {
+        border: 1px solid #ced4da;
+        border-right: none;
+        border-radius: 5px 0 0 5px;
+        width: 300px;
+
+        label {
+          cursor: pointer;
+          position: absolute;
+          visibility: hidden;
           margin: 0;
-          border-radius: 0px 5px 5px 0px;
-          border: 1px solid #ced4da;
-          resize: none;
+          border: 2px solid;
+          color: white;
+          font-weight: bold;
+          background-color: $green;
+          border: 2px solid $gray;
+          border-radius: 30px;
           padding: 1%;
+          left: 70px;
+          top: 194px;
+        }
+
+        &:hover {
+          label {
+            visibility: initial;
+          }
+        }
+
+        .image {
+          width: 0.1px;
+          height: 0.1px;
+          opacity: 0;
+          overflow: hidden;
+          position: absolute;
+          z-index: -1;
+        }
+
+        .loader {
+          text-align: center;
+          margin-top: 20%;
+        }
+
+        img {
+          min-height: 100%;
+          max-height: 100%;
+          object-fit: cover;
+          overflow: hidden;
         }
       }
-  
+
+      .description {
+        height: 100%;
+        width: 65.7%;
+
+        margin: 0;
+        border-radius: 0px 5px 5px 0px;
+        border: 1px solid #ced4da;
+        resize: none;
+        padding: 1%;
+      }
+    }
+
+    input {
+      border-radius: 5px;
+      margin: 1% auto;
+    }
+
+    ul {
+      margin: 1% 0;
+    }
+
+    .list-group-item {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .urgent {
+      color: $urgent-orange;
+    }
+
+    .critical {
+      color: $critical-red;
+    }
+
+    .pressing {
+      color: $pressing-yellow;
+    }
+
+    .longterm {
+      color: $longterm-green;
+    }
+
+    .selected {
+      border: 2px solid $gray;
+    }
+
+    .input-group {
+      margin: 2% auto;
       input {
-        border-radius: 5px;
-        margin: 1% auto;
+        margin: 0;
       }
-  
-      ul {
-        margin: 1% 0;
-      }
-  
-      .list-group-item {
-        font-weight: bold;
-        font-size: 1.2rem;
-      }
-  
-      .urgent {
-        color: $urgent-orange;
-      }
-  
-      .critical {
-        color: $critical-red;
-      }
-  
-      .pressing {
-        color: $pressing-yellow;
-      }
-  
-      .longterm {
-        color: $longterm-green;
-      }
-  
-      .selected {
-        border: 2px solid $gray;
-      }
-  
-      .input-group {
-        margin: 2% auto;
-        input {
-          margin: 0;
-        }
-      }
-  
-      .submit-button {
-        background-color: $green;
-        color: white;
-        border-radius: 30px;
-        border: 2px solid $gray;
-        font-size: 2rem;
-        width: 70%;
-        margin: 1% auto 0;
-        padding: 0.5%;
-        outline: none;
-      }
+    }
+
+    .submit-button {
+      background-color: $green;
+      color: white;
+      border-radius: 30px;
+      border: 2px solid $gray;
+      font-size: 2rem;
+      width: 70%;
+      margin: 1% auto 0;
+      padding: 0.5%;
+      outline: none;
     }
   }
-  
+}

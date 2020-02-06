@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
-import { loginAuth } from '../../../actions/loginActions';
-import { registrationStore } from '../../../actions/registrationActions'
+import { loginAuth } from "../../../actions/loginActions";
+import { registrationStore } from "../../../actions/registrationActions";
 
 // USED FOR ORGANIZATIONS WITH EXISTING LOGIN CREDENTIALS
 
@@ -17,15 +17,18 @@ const OrgLogin = props => {
   const handleSubmit = e => {
     e.preventDefault();
     axios
-      .post(`https://save-the-animals-backend.herokuapp.com/api/users/login`, orgLogin)
+      .post(
+        `https://save-the-animals-backend.herokuapp.com/api/users/login`,
+        orgLogin
+      )
       .then(res => {
-        localStorage.setItem('token', res.data.token)
-        localStorage.setItem('user_id', res.data.id)
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user_id", res.data.id);
         // props.registrationStore(res.data.id)
-        return props.history.push('/organization')
-        console.log(res)
+        return props.history.push("/organization");
+        console.log(res);
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
     // props.history.push('/organization')
   };
 
@@ -33,11 +36,11 @@ const OrgLogin = props => {
     setOrgLogin({ ...orgLogin, [e.target.name]: e.target.value });
   };
 
-  console.log(orgLogin)
+  console.log(orgLogin);
 
   return (
     <div>
-      <form onSubmit={() => props.loginAuth(orgLogin), handleSubmit}>
+      <form onSubmit={(() => props.loginAuth(orgLogin), handleSubmit)}>
         <label htmlFor="username"></label>
         <input
           type="username"

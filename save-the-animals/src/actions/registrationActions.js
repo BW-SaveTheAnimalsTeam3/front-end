@@ -4,10 +4,9 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
   REGISTER_SUPPORTER_STORE_ID
-
 } from "./types";
 
-export const registrationStore = (id) => {
+export const registrationStore = id => {
   return { type: REGISTER_SUPPORTER_STORE_ID, payload: id };
 };
 

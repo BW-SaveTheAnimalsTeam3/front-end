@@ -14,10 +14,11 @@ const RegisterOrganization = props => {
     e.preventDefault();
     axios
       .post(
-        `https://save-the-animals-backend.herokuapp.com/api/users/register/organizations`, orgSignUp
+        `https://save-the-animals-backend.herokuapp.com/api/users/register/organizations`,
+        orgSignUp
       )
       .then(res => {
-          props.history.push('/organization')
+        props.history.push("/organization");
         console.log(res);
       })
       .catch(err => console.log(err));
@@ -26,14 +27,14 @@ const RegisterOrganization = props => {
   const handleChanges = e => {
     setOrgSignUp({ ...orgSignUp, [e.target.name]: e.target.value });
   };
-  console.log(orgSignUp)
+  console.log(orgSignUp);
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <input
           name="org_name"
-          placeholder='Organization Name'
+          placeholder="Organization Name"
           value={orgSignUp.org_name}
           onChange={handleChanges}
         />

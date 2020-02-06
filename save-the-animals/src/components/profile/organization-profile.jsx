@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router";
 import { connect } from "react-redux";
@@ -10,7 +10,7 @@ import { registrationStore } from "../../actions/registrationActions";
 const OrganizationProfile = props => {
   const [campaigns, setCampaigns] = useState([]);
   const history = useHistory();
-  const user_id = localStorage.getItem('user_id')
+  const user_id = localStorage.getItem("user_id");
   // console.log(user_id)
 
   const handleClick = e => {
@@ -25,7 +25,7 @@ const OrganizationProfile = props => {
         `https://save-the-animals-backend.herokuapp.com/api/users/organizations/${user_id}`
       )
       .then(res => {
-        console.log('.get response', res.data[0])
+        console.log(".get response", res.data[0]);
         setCampaigns(res.data[0]);
       })
       .catch(err => {
@@ -60,7 +60,5 @@ const OrganizationProfile = props => {
     </>
   );
 };
-
-
 
 export default connect(null, { registrationStore })(OrganizationProfile);

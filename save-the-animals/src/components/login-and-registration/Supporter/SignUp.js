@@ -2,35 +2,39 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 
-import { registrationSupporterPost, registrationStore } from "../../../actions/registrationActions";
+import {
+  registrationSupporterPost,
+  registrationStore
+} from "../../../actions/registrationActions";
 
 // USED FOR SUPPORTERS WHO NEED TO CREATE AN ACCOUNT
 
 const SupporterSignUp = props => {
   const [supporterSignUp, setSupporterSignUp] = useState({
     username: "",
-    password: "",
+    password: ""
     // city: "",
     // state: ""
   });
-  const [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(false);
 
   const handleSubmit = e => {
     e.preventDefault();
-    axios.post(
-      `https://save-the-animals-backend.herokuapp.com/api/users/register`,
-      supporterSignUp
-    )
+    axios
+      .post(
+        `https://save-the-animals-backend.herokuapp.com/api/users/register`,
+        supporterSignUp
+      )
       .then(res => {
-        console.log(res)
-        props.registrationStore(res.data.user_id)
+        console.log(res);
+        props.registrationStore(res.data.user_id);
         if (toggle === true) {
-          props.history.push('/register-organization')
+          props.history.push("/register-organization");
         } else {
-          props.history.push('/supporter')
+          props.history.push("/supporter");
         }
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
     // props.history.push("/");
   };
 
@@ -40,11 +44,11 @@ const SupporterSignUp = props => {
   };
 
   const toggleCheckbox = () => {
-    setToggle(!toggle)
-  }
+    setToggle(!toggle);
+  };
 
   console.log(supporterSignUp);
-  console.log(toggle)
+  console.log(toggle);
 
   return (
     <form
@@ -73,11 +77,8 @@ const SupporterSignUp = props => {
         required
       />
       <div className="org-checkbox">
-        <label htmlFor='checkbox'>I am an Organization</label>
-        <input type='checkbox'
-          id='checkbox'
-          onChange={toggleCheckbox}
-        />
+        <label htmlFor="checkbox">I am an Organization</label>
+        <input type="checkbox" id="checkbox" onChange={toggleCheckbox} />
       </div>
       {/* 
       <label htmlFor="confirm-password"></label>
@@ -167,4 +168,6 @@ const SupporterSignUp = props => {
   );
 };
 
-export default connect(null, { registrationSupporterPost, registrationStore })(SupporterSignUp);
+export default connect(null, { registrationSupporterPost, registrationStore })(
+  SupporterSignUp
+);

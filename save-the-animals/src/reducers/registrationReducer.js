@@ -6,7 +6,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  user_id: ''
+  user_id: ""
 };
 
 export const registrationReducer = (state = initialState, action) => {
@@ -18,11 +18,11 @@ export const registrationReducer = (state = initialState, action) => {
     case REGISTER_FAILURE:
       return {};
     case REGISTER_SUPPORTER_STORE_ID:
-      console.log('look at me', action.payload)
+      console.log("look at me", action.payload);
       return {
         ...state,
         user_id: action.payload
-      }
+      };
     default:
       return state;
   }

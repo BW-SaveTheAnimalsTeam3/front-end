@@ -20,21 +20,20 @@
   padding: 3%;
   width: 25%;
   margin: auto;
-
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
-  @media(max-width: 800px) {
+  @media (max-width: 800px) {
     display: block;
   }
 
   .card {
     width: 75%;
     margin: 2% auto;
-  
+
     button {
       font-size: 1.5rem;
     }
@@ -42,19 +41,16 @@
 
   .image-container {
     max-height: 310px;
-    // max-width: 300px;
     overflow: hidden;
-  
+
     img {
       width: 100%;
-      // max-height: 100%;
-      // object-fit: cover;
     }
   }
 }
 
 .status {
-  background-color: $critical-red;
+  background-color: $longterm-green;
   color: white;
   font-size: 2rem;
   font-weight: bold;
@@ -63,13 +59,11 @@
 
 .image-container {
   max-height: 500px;
-  // max-width: 300px;
+
   overflow: hidden;
 
   img {
     width: 100%;
-    // max-height: 100%;
-    // object-fit: cover;
   }
 }
 
@@ -113,7 +107,6 @@ h4 {
 
     .progress-bar {
       background-color: $green;
-
     }
 
     span {
@@ -134,24 +127,23 @@ h4 {
   }
 
   .delete-button {
-    color: $critical-red
+    color: $critical-red;
   }
 }
 
 .getButton {
-  // margin-left: 37%;
   margin: 5% 36%;
   background-color: $green;
   color: white;
   border-radius: 30px;
-  border:2px solid $gray;
+  border: 2px solid $gray;
   font-size: 1.5rem;
   outline: none;
-  // margin: 5% 0;
+
   padding: 1% 2%;
 
   &:focus {
-    outline: 0
+    outline: 0;
   }
 }
 
