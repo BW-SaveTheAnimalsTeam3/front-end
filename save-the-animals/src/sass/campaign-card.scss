@@ -1,6 +1,6 @@
 .card {
   width: 85%;
-  margin: 5% auto;
+  margin: 2% auto;
 
   button {
     font-size: 1.5rem;
@@ -8,13 +8,23 @@
 }
 
 .search-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  padding-top: 3%;
+  padding: 3%;
+  width: 25%;
+  margin: auto;
+
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+
+  @media(max-width: 800px) {
+    display: block;
+  }
 }
 
 .status {
@@ -99,10 +109,6 @@ h4 {
   }
 }
 
-.five {
-  font-size: 10px
-}
-
 .getButton {
   // margin-left: 37%;
   margin: 5% 36%;
@@ -117,5 +123,11 @@ h4 {
 
   &:focus {
     outline: 0
+  }
+}
+
+.supporter-modal {
+  .donate-button {
+    width: 100%;
   }
 }

@@ -142,32 +142,40 @@ localStorage.setItem('org_id', props.campaigns.id)
                     <span>Progress Toward Goal:</span>
                     <p>$0/${modalState.funding_goal}</p>
                   </div>
-                  <Progress value={75}>75%</Progress>
-                  <p>
-                    <span>Deadline:</span> {modalState.deadline}
-                  </p>
-                </div>
-              </ModalBody>
-              <ModalFooter>
-                {console.log(modalState.id, "modal state")}
-                <button
-                  className="edit-button"
-                  onClick={() => handleEdit(modalState.id)}
-                >
-                  Edit Campaign
+                  <div className="bottom-content">
+                    <p>{modalState.description}</p>
+                    <div className="progress-info">
+                      <span>Progress Toward Goal:</span>
+                      <p>{modalState.funding_goal}</p>
+                    </div>
+                    <Progress value={75}>75%</Progress>
+                    <p>
+                      <span>Deadline:</span> {modalState.deadline}
+                    </p>
+                  </div> 
+                   </div>
+                </ModalBody>
+               
+                <ModalFooter>
+                  {console.log(modalState.id, "modal state")}
+                  <button
+                    className="edit-button"
+                    onClick={() => handleEdit(modalState.id)}
+                  >
+                    Edit Campaign
                 </button>
-                <button
-                  className="delete-button"
-                  onClick={() => handleDelete(modalState.id)}
-                >
-                  Delete Campaign
+                  <button
+                    className="donate-button"
+                    onClick={() => handleDelete(modalState.id)}
+                  >
+                    Delete Campaign
                 </button>
-              </ModalFooter>
-            </Modal>
-          </div>
-        );
-      })}
-      {/* </div> */}
+                </ModalFooter>
+              </Modal>
+            </div>
+          );
+        })}
+      
       {editModal === true && <EditCampaign />}
       <button onClick={getCampaigns} className="getButton">
         Display Campaigns

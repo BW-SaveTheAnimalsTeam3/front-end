@@ -1,15 +1,15 @@
 import React from 'react'
 
 import Navigation from './Navigation';
-import CampaignCard from './card/campaign-card';
+import SupporterCard from './card/supporter-card';
 
 
 const Dashboard = () => {
 
     return (
-        <div>
+        <div className="dashboard-container">
             <Navigation />
-            {/* <CampaignCard /> */}
+            <SupporterCard />
         </div>
     )
 }

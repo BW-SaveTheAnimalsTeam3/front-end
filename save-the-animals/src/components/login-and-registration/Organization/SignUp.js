@@ -20,11 +20,11 @@ const OrgSignUp = props => {
     axios.post(
       `https://save-the-animals-backend.herokuapp.com/api/users/register/organizations`
     )
-    .then(res => {
-      console.log(res)
-      
-    })
-    .catch(err => console.log(err))
+      .then(res => {
+        console.log(res)
+
+      })
+      .catch(err => console.log(err))
     // props.history.push("/");
   };
 
@@ -138,9 +138,9 @@ const OrgSignUp = props => {
         <option value="WI">Wisconsin</option>
         <option value="WY">Wyoming</option>
       </select> */}
-      <button>Create an Account</button>
+      <button>Create Account</button>
     </form>
   );
 };
 
-export default connect(null, {  })(OrgSignUp);
+export default connect(null, {})(OrgSignUp);
