@@ -98,3 +98,16 @@ h4 {
     color: $critical-red
   }
 }
+
+.five {
+  font-size: 10px
+}
+
+.getButton {
+  margin-left: 37.5%;
+  background-color: $green;
+  color: white;
+  border-radius: 30px;
+  border:2px solid $gray;
+  font-size: 1.5rem;
+}

@@ -11,7 +11,7 @@ const OrganizationProfile = props => {
   const [campaigns, setCampaigns] = useState([]);
   const history = useHistory();
   const user_id = localStorage.getItem('user_id')
-  console.log(user_id)
+  // console.log(user_id)
 
   const handleClick = e => {
     e.preventDefault();
@@ -22,11 +22,11 @@ const OrganizationProfile = props => {
   useEffect(() => {
     axios
       .get(
-        `https://save-the-animals-backend.herokuapp.com/api/campaigns/organizations/${user_id}`
+        `https://save-the-animals-backend.herokuapp.com/api/users/organizations/${user_id}`
       )
       .then(res => {
-        // console.log('.get response', res)
-        setCampaigns(res.data);
+        console.log('.get response', res.data[0])
+        setCampaigns(res.data[0]);
       })
       .catch(err => {
         console.log("cannot get data", err);

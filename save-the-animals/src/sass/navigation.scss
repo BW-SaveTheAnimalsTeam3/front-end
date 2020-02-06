@@ -5,12 +5,19 @@
     margin: auto;
     background-color: $green;
 
+    button {
+        padding: 0 1%;
+        background-color: inherit;
+        border: none;
+     }
+
     .menu-item {
-        padding: 0 2%;
+        margin: 0 2%;
         color: black;
 
         &:hover {
             color: white;
         }
     }
+    
 }

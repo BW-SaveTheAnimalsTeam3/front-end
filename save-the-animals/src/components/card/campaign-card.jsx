@@ -8,7 +8,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import axios from "axios";
-import {axiosWithAuth} from '../../utils/axiosWithAuth'
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { useHistory } from "react-router";
 
 import EditCampaign from "../edit-campaign";
@@ -18,8 +18,6 @@ import {
   deleteCampaign
 } from "../../actions/editCampaignActions";
 
-
-
 const CampaignCard = props => {
   const [modal, setModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
@@ -27,7 +25,7 @@ const CampaignCard = props => {
   const history = useHistory();
 
   const [campaigns, setCampaigns] = useState([]);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   const toggle = () => setModal(!modal);
   const toggleEdit = () => {
@@ -55,24 +53,22 @@ const CampaignCard = props => {
 
   const handleDelete = id => {
     props.deleteCampaign(id);
-    setModal(!modal)
-    // history.push("/organization");
-    // axios
-    //   .delete(`https://save-the-animals-backend.herokuapp.com/api/campaigns/${id}`)
-    //   .then(res => console.log(res))
-    //   .catch(err => console.log(err));
+    setModal(!modal);
   };
   console.log("props in campaign card", props);
-  console.log("modal state", modalState);
+  // console.log("modal state", modalState);
 
-  useEffect(() => {
+  const getCampaigns = () => {
     axios
-      .get('https://save-the-animals-backend.herokuapp.com/api/campaigns')
+      .get(`https://save-the-animals-backend.herokuapp.com/api/campaigns/organizations/${props.campaigns.id}`)
       .then(res => {
         const searchResults = res.data.filter(campaign => {
-
           // FILTERING THROUGH API RESPONSE AND SETTING CAMPAIGNS STATE TO MATCH SEARCH QUERY
-          if (campaign.campaign.toLowerCase().includes(query.toLowerCase()) || campaign.location.toLowerCase().includes(query.toLowerCase()) || campaign.description.toLowerCase().includes(query.toLowerCase())) {
+          if (
+            campaign.campaign.toLowerCase().includes(query.toLowerCase()) ||
+            campaign.location.toLowerCase().includes(query.toLowerCase()) ||
+            campaign.description.toLowerCase().includes(query.toLowerCase())
+          ) {
             return true;
           }
         });
@@ -80,31 +76,39 @@ const CampaignCard = props => {
       })
       .catch(err => {
         console.log("CANNOT RETRIEVE DATA", err);
-      })
-  }, [query])
+      });
+  };
 
   // SETTING QUERY STATE TO SEARCH-FORM INPUT VALUE
-  const handleChanges = (e) => {
+  const handleChanges = e => {
     setQuery(e.target.value);
-  }
+  };
 
   return (
     <>
-      <form className="search-form">
-        <input type="text" placeholder="Search Campaigns" onChange={handleChanges} value={query} />
-      </form>
+      {/* <form className="search-form">
+        <input
+          type="text"
+          placeholder="Search Campaigns"
+          onChange={handleChanges}
+          value={query}
+        />
+      </form> */}
       
-        {/* STYLING CAMPAIGN CARDS IN GRID FORMAT */}
-        {/* <div className="grid-container"> */}
 
-          {/* MAPPING THROUGH FILTERED CAMPAIGNS. STATE SET ABOVE */}
-         {campaigns.map(campaign => {
-          return (
+      {/* STYLING CAMPAIGN CARDS IN GRID FORMAT */}
+      {/* <div className="grid-container"> */}
+
+      {/* MAPPING THROUGH FILTERED CAMPAIGNS. STATE SET ABOVE */}
+      {campaigns.map(campaign => {
+        return (
           <div className="card" key={campaign.id}>
             {/* {console.log(campaign.id)} */}
             <h4>{campaign.campaign}</h4>
             <p className="location">{campaign.location}</p>
-            <div className="status">Status: {campaign.urgency_level}</div>
+            <div id="status" className="status">
+              Status: {campaign.urgency_level}
+            </div>
             <div className="image-container">
               <img
                 src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
@@ -121,7 +125,16 @@ const CampaignCard = props => {
               </ModalHeader>
 
               <ModalBody>
-                <div className="status">Status: {modalState.urgency_level}</div>
+                <div
+                  id="statusModal"
+                  className="status"
+                  // {if (document.getElementById('status').textContent === 5 {
+
+                  // })}
+                >
+                  Status: {modalState.urgency_level}
+                </div>
+
                 <div className="image-container">
                   <img
                     src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
@@ -161,9 +174,13 @@ const CampaignCard = props => {
       })}
       {/* </div> */}
       {editModal === true && <EditCampaign />}
+      <button onClick={getCampaigns} class='getButton'>Display Campaigns</button>
     </>
   );
 };
 
-export default connect(null, {editCampaignGet, editCampaignModal, deleteCampaign}) (CampaignCard);
-
+export default connect(null, {
+  editCampaignGet,
+  editCampaignModal,
+  deleteCampaign
+})(CampaignCard);
