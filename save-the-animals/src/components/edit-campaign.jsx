@@ -13,6 +13,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
+import {useHistory} from 'react-router';
 
 import {
   editCampaignModal,
@@ -20,6 +21,7 @@ import {
 } from "../actions/editCampaignActions";
 
 const EditCampaign = props => {
+    const history = useHistory();
   const org_id = localStorage.getItem("org_id");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -30,9 +32,10 @@ const EditCampaign = props => {
     location: props.location,
     description: props.description,
     species: props.species,
-    urgency_level: props.urgency_level,
+    urgency_level: selected,
     funding_goal: props.funding_goal,
-    deadline: props.deadline
+    deadline: props.deadline,
+    image: props.image
   });
   console.log(initialValue);
   console.log("props", props.propsState);
@@ -44,7 +47,9 @@ const EditCampaign = props => {
     setSelected(e.target.value);
   };
 
-  const editClick = e => {};
+  const editClick = e => {
+      window.location.reload();
+  };
 
   const handleChanges = e => {
     setInitialValue({ ...initialValue, [e.target.name]: e.target.value });
@@ -54,6 +59,7 @@ const EditCampaign = props => {
     e.preventDefault();
     console.log("submit");
     props.editCampaignPut(initialValue, props.id);
+    window.location.reload();
   };
 
   console.log("type of", typeof props.id);
@@ -61,7 +67,7 @@ const EditCampaign = props => {
   const uploadImage = async e => {
     const files = e.target.files;
     const data = new FormData();
-    // console.log(e.target, 'target')
+    console.log(e.target, 'target')
     data.append("file", files[0]);
     data.append("upload_preset", "save-the-animals");
     setLoading(true);
@@ -76,6 +82,7 @@ const EditCampaign = props => {
 
     setImage(file.secure_url);
     setLoading(false);
+    setInitialValue({ ...initialValue, image: file.secure_url });
   };
 
   console.log("props", props.openModal);
@@ -115,7 +122,7 @@ const EditCampaign = props => {
                     className="image"
                     type="file"
                     id="file"
-                    name="file"
+                    name="image"
                     placeholder="Upload Image"
                     onChange={uploadImage}
                   />
@@ -247,6 +254,7 @@ const mapStateToProps = state => {
     urgency_level: state.editCampaignReducer.campaign.urgency_level,
     funding_goal: state.editCampaignReducer.campaign.funding_goal,
     deadline: state.editCampaignReducer.campaign.deadline,
+    image: state.editCampaignReducer.campaign.image,
     id: state.editCampaignReducer.campaign.id,
     propsState: state.editCampaignReducer.campaign
   };

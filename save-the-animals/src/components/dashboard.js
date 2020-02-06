@@ -9,7 +9,7 @@ const Dashboard = () => {
     return (
         <div>
             <Navigation />
-            <CampaignCard />
+            {/* <CampaignCard /> */}
         </div>
     )
 }

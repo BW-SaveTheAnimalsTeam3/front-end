@@ -106,7 +106,7 @@ localStorage.setItem('org_id', props.campaigns.id)
             </div>
             <div className="image-container">
               <img
-                src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
+                src={campaign.image}
                 alt="campaign image"
               />
             </div>
@@ -132,7 +132,7 @@ localStorage.setItem('org_id', props.campaigns.id)
 
                 <div className="image-container">
                   <img
-                    src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
+                    src={modalState.image}
                     alt="campaign image"
                   />
                 </div>
@@ -140,7 +140,7 @@ localStorage.setItem('org_id', props.campaigns.id)
                   <p>{modalState.description}</p>
                   <div className="progress-info">
                     <span>Progress Toward Goal:</span>
-                    <p>{modalState.funding_goal}</p>
+                    <p>$0/${modalState.funding_goal}</p>
                   </div>
                   <Progress value={75}>75%</Progress>
                   <p>

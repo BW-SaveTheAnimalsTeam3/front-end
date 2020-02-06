@@ -11,6 +11,7 @@ import SupporterProfile from './components/profile/supporter-profile';
 import Dashboard from './components/dashboard';
 import PrivateRoute from './components/PrivateRoute';
 import RegisterOrganization from './components/login-and-registration/Organization/register'
+import EditCampaign from './components/edit-campaign'
 
 function App() {
   
@@ -24,6 +25,7 @@ function App() {
       <PrivateRoute path="/create-campaign" component={CreateCampaign} />
       <Route path='/register-organization' component={RegisterOrganization} />
       <Route path="/dashboard" component={Dashboard} />
+      <PrivateRoute path='/campaign-edit' component={EditCampaign} />
     </div>
   );
 }
