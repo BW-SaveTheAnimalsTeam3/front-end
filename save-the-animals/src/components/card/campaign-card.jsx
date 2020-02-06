@@ -165,5 +165,5 @@ const CampaignCard = props => {
   );
 };
 
-export default CampaignCard;
+export default connect(null, {editCampaignGet, editCampaignModal, deleteCampaign}) (CampaignCard);
 

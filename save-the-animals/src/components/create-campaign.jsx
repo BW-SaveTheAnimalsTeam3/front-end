@@ -155,7 +155,7 @@ const CreateCampaign = props => {
             <ListGroupItem
               onClick={handleClick}
               name="urgency_level"
-              value="critical"
+              value="Critical"
               className={`critical ${
                 selected === "critical" ? "selected" : ""
               }`}
@@ -167,7 +167,7 @@ const CreateCampaign = props => {
             <ListGroupItem
               onClick={handleClick}
               name="urgency_level"
-              value="urgent"
+              value="Urgent"
               className={`urgent ${selected === "urgent" ? "selected" : ""}`}
               tag="button"
               action
@@ -177,7 +177,7 @@ const CreateCampaign = props => {
             <ListGroupItem
               onClick={handleClick}
               name="urgency_level"
-              value="pressing"
+              value="Pressing"
               className={`pressing ${
                 selected === "pressing" ? "selected" : ""
               }`}
@@ -189,7 +189,7 @@ const CreateCampaign = props => {
             <ListGroupItem
               onClick={handleClick}
               name="urgency_level"
-              value="longterm"
+              value="Longterm"
               className={`longterm ${
                 selected === "longterm" ? "selected" : ""
               }`}
