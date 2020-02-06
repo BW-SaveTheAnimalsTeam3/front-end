@@ -9,6 +9,7 @@ import {
   Row,
   Col
 } from "reactstrap";
+import { TweenLite, Linear } from 'gsap';
 import classnames from "classnames";
 import OrgLogin from "../Organization/Login";
 import SupporterLogin from "../Supporter/Login";
@@ -24,8 +25,19 @@ const SignIn = props => {
   };
   console.log(props, 'sign in')
 
+  // GREENSOCK ANIMATIONS
+
+  function fadeIn() {
+    const el = document.querySelector('.sign-in');
+    const duration = 0.75;
+    const from = { opacity: 0, ease: Linear.easeIn };
+    const to = { opacity: 1 };
+    TweenLite.fromTo(el, duration, from, to);
+  }
+
+
   return (
-    <div className='form-container'>
+    <div className='form-container' onLoad={fadeIn()}>
       <div className='sign-in'>
         <h4 className='form-heading'>Login</h4>
         <Nav tabs>

@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 // ROUTES TO REGISTRATION PAGES IF USER NEEDS TO CREATE AN ACCOUNT
 
 
+
+
 const Register = () => {
 
 
