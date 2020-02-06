@@ -107,7 +107,7 @@ const SupporterCard = props => {
                             <div className="status">Status: {campaign.urgency_level}</div>
                             <div className="image-container">
                                 <img
-                                    src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
+                                    src={campaign.image}
                                     alt="campaign image"
                                 />
                             </div>
@@ -124,7 +124,7 @@ const SupporterCard = props => {
                                     <div className="status">Status: {modalState.urgency_level}</div>
                                     <div className="image-container">
                                         <img
-                                            src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
+                                            src={modalState.image}
                                             alt="campaign image"
                                         />
                                     </div>
