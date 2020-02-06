@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Navigation from './Navigation';
-import CampaignCard from './card/campaign-card';
+import SupporterCard from './card/supporter-card';
 
 
 const Dashboard = () => {
@@ -9,7 +9,7 @@ const Dashboard = () => {
     return (
         <div>
             <Navigation />
-            <CampaignCard />
+            <SupporterCard />
         </div>
     )
 }

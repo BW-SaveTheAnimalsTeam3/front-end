@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import axios from 'axios';
 
-import CampaignCard from '../card/campaign-card';
+import SupporterCard from '../card/supporter-card';
 import Navigation from '../Navigation';
 
 const SupporterProfile = (props) => {
@@ -34,7 +34,7 @@ const SupporterProfile = (props) => {
                     <h3><span>Campaigns</span></h3>
                 </div>
                 <div className='feed'>
-                    <CampaignCard />
+                    <SupporterCard />
                 </div>
             </div>
         </>
