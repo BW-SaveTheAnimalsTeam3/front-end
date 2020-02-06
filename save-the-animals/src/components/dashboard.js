@@ -7,7 +7,7 @@ import SupporterCard from './card/supporter-card';
 const Dashboard = () => {
 
     return (
-        <div>
+        <div className="dashboard-container">
             <Navigation />
             <SupporterCard />
         </div>

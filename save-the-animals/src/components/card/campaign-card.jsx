@@ -8,7 +8,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import axios from "axios";
-import {axiosWithAuth} from '../../utils/axiosWithAuth'
+import { axiosWithAuth } from '../../utils/axiosWithAuth'
 import { useHistory } from "react-router";
 
 import EditCampaign from "../edit-campaign";
@@ -93,77 +93,77 @@ const CampaignCard = props => {
       <form className="search-form">
         <input type="text" placeholder="Search Campaigns" onChange={handleChanges} value={query} />
       </form>
-      
-        {/* STYLING CAMPAIGN CARDS IN GRID FORMAT */}
-        {/* <div className="grid-container"> */}
 
-          {/* MAPPING THROUGH FILTERED CAMPAIGNS. STATE SET ABOVE */}
-         {campaigns.map(campaign => {
+      {/* STYLING CAMPAIGN CARDS IN GRID FORMAT */}
+      <div className="grid-container">
+
+        {/* MAPPING THROUGH FILTERED CAMPAIGNS. STATE SET ABOVE */}
+        {campaigns.map(campaign => {
           return (
-          <div className="card" key={campaign.id}>
-            {/* {console.log(campaign.id)} */}
-            <h4>{campaign.campaign}</h4>
-            <p className="location">{campaign.location}</p>
-            <div className="status">Status: {campaign.urgency_level}</div>
-            <div className="image-container">
-              <img
-                src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
-                alt="campaign image"
-              />
-            </div>
-            <button onClick={() => detailClick(campaign.id)}>
-              View Details
+            <div className="card" key={campaign.id}>
+              {/* {console.log(campaign.id)} */}
+              <h4>{campaign.campaign}</h4>
+              <p className="location">{campaign.location}</p>
+              <div className="status">Status: {campaign.urgency_level}</div>
+              <div className="image-container">
+                <img
+                  src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
+                  alt="campaign image"
+                />
+              </div>
+              <button onClick={() => detailClick(campaign.id)}>
+                View Details
             </button>
-            <Modal isOpen={modal} toggle={detailClick}>
-              <ModalHeader toggle={detailClick}>
-                {modalState.campaign}
-                <p>{modalState.location}</p>
-              </ModalHeader>
+              <Modal isOpen={modal} toggle={detailClick}>
+                <ModalHeader toggle={detailClick}>
+                  {modalState.campaign}
+                  <p>{modalState.location}</p>
+                </ModalHeader>
 
-              <ModalBody>
-                <div className="status">Status: {modalState.urgency_level}</div>
-                <div className="image-container">
-                  <img
-                    src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
-                    alt="campaign image"
-                  />
-                </div>
-                <div className="bottom-content">
-                  <p>{modalState.description}</p>
-                  <div className="progress-info">
-                    <span>Progress Toward Goal:</span>
-                    <p>{modalState.funding_goal}</p>
+                <ModalBody>
+                  <div className="status">Status: {modalState.urgency_level}</div>
+                  <div className="image-container">
+                    <img
+                      src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
+                      alt="campaign image"
+                    />
                   </div>
-                  <Progress value={75}>75%</Progress>
-                  <p>
-                    <span>Deadline:</span> {modalState.deadline}
-                  </p>
-                </div>
-              </ModalBody>
-              <ModalFooter>
-                {console.log(modalState.id, "modal state")}
-                <button
-                  className="edit-button"
-                  onClick={() => handleEdit(modalState.id)}
-                >
-                  Edit Campaign
+                  <div className="bottom-content">
+                    <p>{modalState.description}</p>
+                    <div className="progress-info">
+                      <span>Progress Toward Goal:</span>
+                      <p>{modalState.funding_goal}</p>
+                    </div>
+                    <Progress value={75}>75%</Progress>
+                    <p>
+                      <span>Deadline:</span> {modalState.deadline}
+                    </p>
+                  </div>
+                </ModalBody>
+                <ModalFooter>
+                  {console.log(modalState.id, "modal state")}
+                  <button
+                    className="edit-button"
+                    onClick={() => handleEdit(modalState.id)}
+                  >
+                    Edit Campaign
                 </button>
-                <button
-                  className="delete-button"
-                  onClick={() => handleDelete(modalState.id)}
-                >
-                  Delete Campaign
+                  <button
+                    className="donate-button"
+                    onClick={() => handleDelete(modalState.id)}
+                  >
+                    Delete Campaign
                 </button>
-              </ModalFooter>
-            </Modal>
-          </div>
-        );
-      })}
-      {/* </div> */}
+                </ModalFooter>
+              </Modal>
+            </div>
+          );
+        })}
+      </div>
       {editModal === true && <EditCampaign />}
     </>
   );
 };
 
-export default connect(null, {editCampaignGet, editCampaignModal, deleteCampaign}) (CampaignCard);
+export default connect(null, { editCampaignGet, editCampaignModal, deleteCampaign })(CampaignCard);
 

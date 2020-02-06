@@ -5,6 +5,7 @@
     margin: auto;
     background-color: $longterm-green;
 
+
     .menu-item {
         padding: 0 2%;
         color: black;
@@ -13,10 +14,16 @@
             color: white;
             text-decoration: none;
         }
+
+        @media(max-width: 800px) {
+            font-size: 1rem;
+            padding: 2%;
+        }
     }
 
     button {
         background: none;
         border: none;
     }
+
 }
