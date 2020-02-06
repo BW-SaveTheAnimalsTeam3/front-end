@@ -1,21 +1,37 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 
-import { registrationSupporterPost } from "../../../actions/registrationActions";
+import { registrationSupporterPost, registrationStore } from "../../../actions/registrationActions";
 
 // USED FOR SUPPORTERS WHO NEED TO CREATE AN ACCOUNT
 
 const SupporterSignUp = props => {
   const [supporterSignUp, setSupporterSignUp] = useState({
-    email: "",
+    username: "",
     password: "",
-    city: "",
-    state: ""
+    // city: "",
+    // state: ""
   });
+  const  [toggle, setToggle] = useState(false)
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.history.push("/");
+    axios.post(
+      `https://save-the-animals-backend.herokuapp.com/api/users/register`,
+      supporterSignUp
+    )
+    .then(res => {
+      console.log(res)
+      props.registrationStore(res.data.user_id)
+      if (toggle === true) {
+      props.history.push('/register-organization')
+      } else {
+        props.history.push('/supporter')
+      }
+    })
+    .catch(err => console.log(err))
+    // props.history.push("/");
   };
 
   const handleChanges = e => {
@@ -23,7 +39,12 @@ const SupporterSignUp = props => {
     setSupporterSignUp({ ...supporterSignUp, [e.target.name]: e.target.value });
   };
 
+  const toggleCheckbox = () => {
+    setToggle(!toggle)
+  }
+
   console.log(supporterSignUp);
+  console.log(toggle)
 
   return (
     <form
@@ -31,13 +52,13 @@ const SupporterSignUp = props => {
         (() => props.registrationSupporterPost(supporterSignUp), handleSubmit)
       }
     >
-      <label htmlFor="email"></label>
+      <label htmlFor="username"></label>
       <input
         type="text"
-        placeholder="Email"
-        name="email"
+        placeholder="username"
+        name="username"
         onChange={handleChanges}
-        value={supporterSignUp.email}
+        value={supporterSignUp.username}
         required
       />
 
@@ -51,7 +72,12 @@ const SupporterSignUp = props => {
         value={supporterSignUp.password}
         required
       />
-
+      <label htmlFor='checkbox'>I am an Organization</label>
+      <input type='checkbox' 
+      id='checkbox'
+      onChange={toggleCheckbox}
+      />
+{/* 
       <label htmlFor="confirm-password"></label>
       <input
         type="password"
@@ -132,11 +158,11 @@ const SupporterSignUp = props => {
         <option value="WV">West Virginia</option>
         <option value="WI">Wisconsin</option>
         <option value="WY">Wyoming</option>
-      </select>
+      </select> */}
 
       <button>Create an Account</button>
     </form>
   );
 };
 
-export default connect(null, { registrationSupporterPost })(SupporterSignUp);
+export default connect(null, { registrationSupporterPost, registrationStore })(SupporterSignUp);

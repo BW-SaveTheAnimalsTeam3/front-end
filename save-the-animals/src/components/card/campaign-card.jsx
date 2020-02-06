@@ -6,13 +6,25 @@ import {
   ModalFooter,
   Progress
 } from "reactstrap";
+import { connect } from "react-redux";
+import axios from "axios";
+import {axiosWithAuth} from '../../utils/axiosWithAuth'
+import { useHistory } from "react-router";
 
-import EditCampaign from '../edit-campaign';
-import axios from 'axios';
+import EditCampaign from "../edit-campaign";
+import {
+  editCampaignGet,
+  editCampaignModal,
+  deleteCampaign
+} from "../../actions/editCampaignActions";
 
-const CampaignCard = (props) => {
+
+
+const CampaignCard = props => {
   const [modal, setModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const [modalState, setModalState] = useState({});
+  const history = useHistory();
 
   const [campaigns, setCampaigns] = useState([]);
   const [query, setQuery] = useState('');
@@ -23,7 +35,36 @@ const CampaignCard = (props) => {
     setEditModal(!editModal);
   };
 
-  // CALLING API TO RETURN CAMPAIGN CARD DATA
+  const handleEdit = id => {
+    props.editCampaignModal(true);
+    toggleEdit();
+    props.editCampaignGet(id);
+  };
+
+  const detailClick = id => {
+    setModal(!modal);
+    console.log("this is the id", id);
+    axiosWithAuth()
+      .get(`/campaigns/${id}`)
+      .then(res => {
+        console.log(res);
+        setModalState(res.data);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const handleDelete = id => {
+    props.deleteCampaign(id);
+    setModal(!modal)
+    // history.push("/organization");
+    // axios
+    //   .delete(`https://save-the-animals-backend.herokuapp.com/api/campaigns/${id}`)
+    //   .then(res => console.log(res))
+    //   .catch(err => console.log(err));
+  };
+  console.log("props in campaign card", props);
+  console.log("modal state", modalState);
+
   useEffect(() => {
     axios
       .get('https://save-the-animals-backend.herokuapp.com/api/campaigns')
@@ -47,70 +88,82 @@ const CampaignCard = (props) => {
     setQuery(e.target.value);
   }
 
-
   return (
     <>
       <form className="search-form">
         <input type="text" placeholder="Search Campaigns" onChange={handleChanges} value={query} />
       </form>
-      <>
+      
         {/* STYLING CAMPAIGN CARDS IN GRID FORMAT */}
-        <div className="grid-container">
+        {/* <div className="grid-container"> */}
 
           {/* MAPPING THROUGH FILTERED CAMPAIGNS. STATE SET ABOVE */}
-          {campaigns.map((campaign, key) => {
-            return (
-              <div className="card" key={key}>
-                <h4>{campaign.campaign}</h4>
-                <p className="location">{campaign.location}</p>
-                <div className="status">Status: {campaign.urgency_level}</div>
+         {campaigns.map(campaign => {
+          return (
+          <div className="card" key={campaign.id}>
+            {/* {console.log(campaign.id)} */}
+            <h4>{campaign.campaign}</h4>
+            <p className="location">{campaign.location}</p>
+            <div className="status">Status: {campaign.urgency_level}</div>
+            <div className="image-container">
+              <img
+                src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
+                alt="campaign image"
+              />
+            </div>
+            <button onClick={() => detailClick(campaign.id)}>
+              View Details
+            </button>
+            <Modal isOpen={modal} toggle={detailClick}>
+              <ModalHeader toggle={detailClick}>
+                {modalState.campaign}
+                <p>{modalState.location}</p>
+              </ModalHeader>
+
+              <ModalBody>
+                <div className="status">Status: {modalState.urgency_level}</div>
                 <div className="image-container">
                   <img
                     src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
                     alt="campaign image"
                   />
                 </div>
-                <button onClick={toggle}>View Details</button>
-
-                {/* BUTTON CLICK OPENS MODAL WITH ADDITIONAL DETAILS */}
-                <Modal isOpen={modal} toggle={toggle}>
-                  <ModalHeader toggle={toggle}>
-                    <h4>{campaign.campaign}</h4>
-                    <p>{campaign.location}</p>
-                  </ModalHeader>
-
-                  <ModalBody>
-                    <div className="status">Status: {campaign.urgency_level}</div>
-                    <div className="image-container">
-                      <img
-                        src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
-                        alt="campaign image"
-                      />
-                    </div>
-                    <div className="bottom-content">
-                      <p>
-                        {campaign.description}
-                      </p>
-                      <div className="progress-info">
-                        <span>Progress Toward Goal:</span>
-                        <p>{campaign.funding_goal}</p>
-                      </div>
-                      <Progress value={75}>75%</Progress>
-                      <p><span>Deadline:</span> {campaign.deadline}</p>
-                    </div>
-                  </ModalBody>
-                  <ModalFooter>
-                    <button className="edit-button">Edit Campaign</button>
-                    <button className="delete-button">Delete Campaign</button>
-                  </ModalFooter>
-                </Modal>
-              </div>
-            )
-          })}
-        </div>
-      </>
+                <div className="bottom-content">
+                  <p>{modalState.description}</p>
+                  <div className="progress-info">
+                    <span>Progress Toward Goal:</span>
+                    <p>{modalState.funding_goal}</p>
+                  </div>
+                  <Progress value={75}>75%</Progress>
+                  <p>
+                    <span>Deadline:</span> {modalState.deadline}
+                  </p>
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                {console.log(modalState.id, "modal state")}
+                <button
+                  className="edit-button"
+                  onClick={() => handleEdit(modalState.id)}
+                >
+                  Edit Campaign
+                </button>
+                <button
+                  className="delete-button"
+                  onClick={() => handleDelete(modalState.id)}
+                >
+                  Delete Campaign
+                </button>
+              </ModalFooter>
+            </Modal>
+          </div>
+        );
+      })}
+      {/* </div> */}
+      {editModal === true && <EditCampaign />}
     </>
   );
 };
 
-export default CampaignCard;
+export default connect(null, {editCampaignGet, editCampaignModal, deleteCampaign}) (CampaignCard);
+

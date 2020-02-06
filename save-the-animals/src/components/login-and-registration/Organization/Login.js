@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { loginAuth } from '../../../actions/loginActions';
+import {registrationStore} from '../../../actions/registrationActions'
 
 // USED FOR ORGANIZATIONS WITH EXISTING LOGIN CREDENTIALS
 
@@ -16,8 +17,13 @@ const OrgLogin = props => {
   const handleSubmit = e => {
       e.preventDefault();
     axios
-      .post()
-      .then(res => console.log(res))
+      .post(`https://save-the-animals-backend.herokuapp.com/api/users/login`, orgLogin)
+      .then(res => {localStorage.setItem('token', res.data.token)
+      localStorage.setItem('user_id', res.data.id)
+    // props.registrationStore(res.data.id)
+    return props.history.push('/organization')
+    console.log(res)
+    })
       .catch(err => console.log(err))
     // props.history.push('/organization')
   };
@@ -55,4 +61,4 @@ const OrgLogin = props => {
   );
 };
 
-export default connect(null, { loginAuth })(OrgLogin);
+export default connect(null, { loginAuth, registrationStore })(OrgLogin);

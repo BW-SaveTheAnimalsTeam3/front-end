@@ -1,22 +1,31 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import { registrationPost } from "../../../actions/registrationActions";
+// import { registrationPost } from "../../../actions/registrationActions";
+import axios from "axios";
 
 // USED FOR ORGANIZATIONS THAT NEED TO CREATE AN ACCOUNT
 
 const OrgSignUp = props => {
   const [orgSignUp, setOrgSignUp] = useState({
-    organizationName: "",
-    email: "",
-    password: "",
-    city: "",
-    state: ""
+    username: "",
+    // email: "",
+    password: ""
+    // city: "",
+    // state: ""
   });
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.history.push("/");
+    axios.post(
+      `https://save-the-animals-backend.herokuapp.com/api/users/register/organizations`
+    )
+    .then(res => {
+      console.log(res)
+      
+    })
+    .catch(err => console.log(err))
+    // props.history.push("/");
   };
 
   const handleChanges = e => {
@@ -31,12 +40,12 @@ const OrgSignUp = props => {
       <input
         type="text"
         placeholder="Organization Name"
-        name="organizationName"
+        name="username"
         onChange={handleChanges}
         value={orgSignUp.organizationName}
         required
       />
-      <label htmlFor="email"></label>
+      {/* <label htmlFor="email"></label>
       <input
         type="text"
         placeholder="Email"
@@ -44,7 +53,7 @@ const OrgSignUp = props => {
         onChange={handleChanges}
         value={orgSignUp.email}
         required
-      />
+      /> */}
       <label htmlFor="password"></label>
       <input
         type="password"
@@ -54,7 +63,7 @@ const OrgSignUp = props => {
         value={orgSignUp.password}
         required
       />
-      <label htmlFor="confirm-password"></label>
+      {/* <label htmlFor="confirm-password"></label>
       <input type="password" placeholder="Confirm Password" required />
       <label htmlFor="cityName"></label>
       <input
@@ -128,10 +137,10 @@ const OrgSignUp = props => {
         <option value="WV">West Virginia</option>
         <option value="WI">Wisconsin</option>
         <option value="WY">Wyoming</option>
-      </select>
+      </select> */}
       <button>Create an Account</button>
     </form>
   );
 };
 
-export default connect(null, { registrationPost })(OrgSignUp);
+export default connect(null, {  })(OrgSignUp);

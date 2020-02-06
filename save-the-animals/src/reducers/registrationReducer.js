@@ -1,10 +1,13 @@
 import {
   REGISTER_LOADING,
   REGISTER_SUCCESS,
-  REGISTER_FAILURE
+  REGISTER_FAILURE,
+  REGISTER_SUPPORTER_STORE_ID
 } from "../actions/types";
 
-const initialState = {};
+const initialState = {
+  user_id: ''
+};
 
 export const registrationReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -14,6 +17,12 @@ export const registrationReducer = (state = initialState, action) => {
       return {};
     case REGISTER_FAILURE:
       return {};
+    case REGISTER_SUPPORTER_STORE_ID:
+      console.log('look at me', action.payload)
+      return {
+        ...state,
+        user_id: action.payload
+      }
     default:
       return state;
   }

@@ -10,15 +10,19 @@ import RegisterAccount from "./components/login-and-registration/Forms/RegisterA
 import SupporterProfile from './components/profile/supporter-profile';
 import Dashboard from './components/dashboard';
 import PrivateRoute from './components/PrivateRoute';
+import RegisterOrganization from './components/login-and-registration/Organization/register'
 
 function App() {
+  
   return (
     <div className="App">
       <Route exact path="/" component={SignIn} />
       <Route exact path="/register" component={RegisterAccount} />
       <PrivateRoute path="/organization" component={OrganizationProfile} />
+      {/* <PrivateRoute path="/organization"><OrganizationProfile /></PrivateRoute> */}
       <PrivateRoute path="/supporter" component={SupporterProfile} />
       <PrivateRoute path="/create-campaign" component={CreateCampaign} />
+      <Route path='/register-organization' component={RegisterOrganization} />
       <Route path="/dashboard" component={Dashboard} />
     </div>
   );

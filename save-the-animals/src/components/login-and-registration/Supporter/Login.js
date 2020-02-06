@@ -17,8 +17,10 @@ const SupporterLogin = props => {
     e.preventDefault();
     axios
       .post(`https://save-the-animals-backend.herokuapp.com/api/users/login`, supporterLogin)
-      .then(res => {localStorage.setItem('token', res.data.token)
-      return props.history.push('/organization')}
+      .then(res => 
+        // console.log(res)
+        {localStorage.setItem('token', res.data.token)
+      return props.history.push('/supporter')}
       )
       .catch(err => console.log(err))
     // props.loginSupporterAuth(supporterLogin);
