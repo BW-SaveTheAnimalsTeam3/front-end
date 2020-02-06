@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Modal,
   ModalHeader,
@@ -18,13 +18,18 @@ import {
   deleteCampaign
 } from "../../actions/editCampaignActions";
 
+
+
 const CampaignCard = props => {
   const [modal, setModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [modalState, setModalState] = useState({});
   const history = useHistory();
 
-  // const toggle = () => setModal(!modal);
+  const [campaigns, setCampaigns] = useState([]);
+  const [query, setQuery] = useState('');
+
+  const toggle = () => setModal(!modal);
   const toggleEdit = () => {
     setModal(false);
     setEditModal(!editModal);
@@ -60,10 +65,41 @@ const CampaignCard = props => {
   console.log("props in campaign card", props);
   console.log("modal state", modalState);
 
+  useEffect(() => {
+    axios
+      .get('https://save-the-animals-backend.herokuapp.com/api/campaigns')
+      .then(res => {
+        const searchResults = res.data.filter(campaign => {
+
+          // FILTERING THROUGH API RESPONSE AND SETTING CAMPAIGNS STATE TO MATCH SEARCH QUERY
+          if (campaign.campaign.toLowerCase().includes(query.toLowerCase()) || campaign.location.toLowerCase().includes(query.toLowerCase()) || campaign.description.toLowerCase().includes(query.toLowerCase())) {
+            return true;
+          }
+        });
+        setCampaigns(searchResults);
+      })
+      .catch(err => {
+        console.log("CANNOT RETRIEVE DATA", err);
+      })
+  }, [query])
+
+  // SETTING QUERY STATE TO SEARCH-FORM INPUT VALUE
+  const handleChanges = (e) => {
+    setQuery(e.target.value);
+  }
+
   return (
     <>
-      {props.campaigns.map(campaign => {
-        return (
+      <form className="search-form">
+        <input type="text" placeholder="Search Campaigns" onChange={handleChanges} value={query} />
+      </form>
+      
+        {/* STYLING CAMPAIGN CARDS IN GRID FORMAT */}
+        {/* <div className="grid-container"> */}
+
+          {/* MAPPING THROUGH FILTERED CAMPAIGNS. STATE SET ABOVE */}
+         {campaigns.map(campaign => {
+          return (
           <div className="card" key={campaign.id}>
             {/* {console.log(campaign.id)} */}
             <h4>{campaign.campaign}</h4>
@@ -123,70 +159,11 @@ const CampaignCard = props => {
           </div>
         );
       })}
+      {/* </div> */}
       {editModal === true && <EditCampaign />}
     </>
   );
 };
 
-export default connect(null, {
-  editCampaignGet,
-  editCampaignModal,
-  deleteCampaign
-})(CampaignCard);
+export default CampaignCard;
 
-// import React, { useState } from "react";
-
-// import { connect } from "react-redux";
-// import axios from "axios";
-
-// import EditCampaign from "../edit-campaign";
-// import {
-//   editCampaignGet,
-//   editCampaignModal
-// } from "../../actions/editCampaignActions";
-// import CardModal from './card-modal';
-
-// const CampaignCard = props => {
-//   const [modal, setModal] = useState(false);
-//   const [editModal, setEditModal] = useState(false);
-//   const [openDetails, setOpenDetails] = useState(false)
-
-//   // const toggle = () => setOpenDetails(true);
-
-//   const handleClick = e => {
-//     console.log(e.target.id)
-//     setOpenDetails(true)
-//   }
-
-//   console.log("props in campaign card", props);
-
-//   return (
-//     <>
-//       {props.campaigns.map(campaign => {
-//         return (
-//           <div className="card" key={campaign.id}>
-//             {console.log(campaign.id)}
-//             <h4>{campaign.campaign}</h4>
-//             <p className="location">{campaign.location}</p>
-//             <div className="status">Status: {campaign.urgency_level}</div>
-//             <div className="image-container">
-//               <img
-//                 src="https://images.unsplash.com/photo-1564652518878-669c345bb458?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=564&q=80"
-//                 alt="campaign image"
-//               />
-//             </div>
-//             <button id={campaign.id, 'button id'} onClick={handleClick}>View Details</button>
-
-//           </div>
-//         );
-//       })}
-
-//       {openDetails === true && <CardModal key={props.campaigns.id} campaign={props.campaigns}/>}
-//       {editModal === true && <EditCampaign />}
-//     </>
-//   );
-// };
-
-// export default connect(null, { editCampaignGet, editCampaignModal })(
-//   CampaignCard
-// );
