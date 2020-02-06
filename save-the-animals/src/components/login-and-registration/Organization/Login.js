@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { loginAuth } from '../../../actions/loginActions';
-import {registrationStore} from '../../../actions/registrationActions'
+import { registrationStore } from '../../../actions/registrationActions'
 
 // USED FOR ORGANIZATIONS WITH EXISTING LOGIN CREDENTIALS
 
@@ -15,15 +15,16 @@ const OrgLogin = props => {
   });
 
   const handleSubmit = e => {
-      e.preventDefault();
+    e.preventDefault();
     axios
       .post(`https://save-the-animals-backend.herokuapp.com/api/users/login`, orgLogin)
-      .then(res => {localStorage.setItem('token', res.data.token)
-      localStorage.setItem('user_id', res.data.id)
-    // props.registrationStore(res.data.id)
-    return props.history.push('/organization')
-    console.log(res)
-    })
+      .then(res => {
+        localStorage.setItem('token', res.data.token)
+        localStorage.setItem('user_id', res.data.id)
+        // props.registrationStore(res.data.id)
+        return props.history.push('/organization')
+        console.log(res)
+      })
       .catch(err => console.log(err))
     // props.history.push('/organization')
   };
@@ -41,7 +42,7 @@ const OrgLogin = props => {
         <input
           type="username"
           name="username"
-          placeholder="username"
+          placeholder="Username"
           onChange={handleChanges}
           value={orgLogin.username}
           required
@@ -50,12 +51,12 @@ const OrgLogin = props => {
         <input
           type="password"
           name="password"
-          placeholder="password"
+          placeholder="Password"
           onChange={handleChanges}
           value={orgLogin.password}
           required
         />
-       <button>Sign In</button>
+        <button>Sign In</button>
       </form>
     </div>
   );

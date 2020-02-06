@@ -11,7 +11,7 @@ const Register = () => {
 
 
     return (
-        <div>
+        <div className="change-form">
             <h2>Don't have an account?</h2>
             <Link to="/register">Register Here</Link>
         </div>

@@ -13,7 +13,7 @@ const SupporterSignUp = props => {
     // city: "",
     // state: ""
   });
-  const  [toggle, setToggle] = useState(false)
+  const [toggle, setToggle] = useState(false)
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -21,16 +21,16 @@ const SupporterSignUp = props => {
       `https://save-the-animals-backend.herokuapp.com/api/users/register`,
       supporterSignUp
     )
-    .then(res => {
-      console.log(res)
-      props.registrationStore(res.data.user_id)
-      if (toggle === true) {
-      props.history.push('/register-organization')
-      } else {
-        props.history.push('/supporter')
-      }
-    })
-    .catch(err => console.log(err))
+      .then(res => {
+        console.log(res)
+        props.registrationStore(res.data.user_id)
+        if (toggle === true) {
+          props.history.push('/register-organization')
+        } else {
+          props.history.push('/supporter')
+        }
+      })
+      .catch(err => console.log(err))
     // props.history.push("/");
   };
 
@@ -55,7 +55,7 @@ const SupporterSignUp = props => {
       <label htmlFor="username"></label>
       <input
         type="text"
-        placeholder="username"
+        placeholder="Username"
         name="username"
         onChange={handleChanges}
         value={supporterSignUp.username}
@@ -72,12 +72,14 @@ const SupporterSignUp = props => {
         value={supporterSignUp.password}
         required
       />
-      <label htmlFor='checkbox'>I am an Organization</label>
-      <input type='checkbox' 
-      id='checkbox'
-      onChange={toggleCheckbox}
-      />
-{/* 
+      <div className="org-checkbox">
+        <label htmlFor='checkbox'>I am an Organization</label>
+        <input type='checkbox'
+          id='checkbox'
+          onChange={toggleCheckbox}
+        />
+      </div>
+      {/* 
       <label htmlFor="confirm-password"></label>
       <input
         type="password"

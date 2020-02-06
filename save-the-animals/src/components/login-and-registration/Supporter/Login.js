@@ -17,10 +17,12 @@ const SupporterLogin = props => {
     e.preventDefault();
     axios
       .post(`https://save-the-animals-backend.herokuapp.com/api/users/login`, supporterLogin)
-      .then(res => 
-        // console.log(res)
-        {localStorage.setItem('token', res.data.token)
-      return props.history.push('/supporter')}
+      .then(res =>
+      // console.log(res)
+      {
+        localStorage.setItem('token', res.data.token)
+        return props.history.push('/supporter')
+      }
       )
       .catch(err => console.log(err))
     // props.loginSupporterAuth(supporterLogin);
@@ -39,7 +41,7 @@ const SupporterLogin = props => {
       <label htmlFor="email"></label>
       <input
         type="text"
-        placeholder="username"
+        placeholder="Username"
         name="username"
         onChange={handleChanges}
         value={supporterLogin.username}
@@ -48,7 +50,7 @@ const SupporterLogin = props => {
       <label htmlFor="password"></label>
       <input
         type="password"
-        placeholder="password"
+        placeholder="Password"
         name="password"
         onChange={handleChanges}
         value={supporterLogin.password}
@@ -59,7 +61,7 @@ const SupporterLogin = props => {
   );
 };
 
-export default connect(null, { loginSupporterAuth }) (SupporterLogin);
+export default connect(null, { loginSupporterAuth })(SupporterLogin);
 
 
 //testSupporter
