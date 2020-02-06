@@ -8,6 +8,7 @@ import CreateCampaign from "./components/create-campaign";
 import SignIn from "./components/login-and-registration/Forms/SignIn";
 import RegisterAccount from "./components/login-and-registration/Forms/RegisterAccount";
 import SupporterProfile from './components/profile/supporter-profile';
+import Dashboard from './components/dashboard';
 import PrivateRoute from './components/PrivateRoute';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <PrivateRoute path="/organization" component={OrganizationProfile} />
       <PrivateRoute path="/supporter" component={SupporterProfile} />
       <PrivateRoute path="/create-campaign" component={CreateCampaign} />
+      <Route path="/dashboard" component={Dashboard} />
     </div>
   );
 }
