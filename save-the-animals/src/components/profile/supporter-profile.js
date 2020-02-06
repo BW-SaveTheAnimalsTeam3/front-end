@@ -7,11 +7,6 @@ import Navigation from '../Navigation';
 const SupporterProfile = (props) => {
     const [campaigns, setCampaigns] = useState([]);
 
-    const handleClick = e => {
-        e.preventDefault();
-        props.history.push('/create-campaign');
-    }
-
     // AXIOS CALL HERE WHEN ENDPOINTS ARE READY
     useEffect(() => {
         axios

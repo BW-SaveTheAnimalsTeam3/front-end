@@ -82,12 +82,11 @@ const EditCampaign = props => {
       <div className="edit-form">
         <Modal isOpen={true}>
           <ModalHeader>
-            Save This Turtle
-            {props.campaign}
-            <p>South Palm Beach</p>
-            <button onClick={() => props.editCampaignModal(false)}>
+            Edit This Campaign
+            
+            {/* <button onClick={() => props.editCampaignModal(false)}>
               Close
-            </button>
+            </button> */}
           </ModalHeader>
           <ModalBody>
             <form onSubmit={handleSubmit}>

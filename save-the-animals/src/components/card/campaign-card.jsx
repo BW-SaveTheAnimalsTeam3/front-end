@@ -8,6 +8,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import axios from "axios";
+import {axiosWithAuth} from '../../utils/axiosWithAuth'
 import { useHistory } from "react-router";
 
 import EditCampaign from "../edit-campaign";
@@ -38,8 +39,8 @@ const CampaignCard = props => {
   const detailClick = id => {
     setModal(!modal);
     console.log("this is the id", id);
-    axios
-      .get(`https://save-the-animals-backend.herokuapp.com/api/campaigns/${id}`)
+    axiosWithAuth()
+      .get(`/campaigns/${id}`)
       .then(res => {
         console.log(res);
         setModalState(res.data);

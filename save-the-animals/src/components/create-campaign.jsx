@@ -13,11 +13,14 @@ import axios from "axios";
 
 import Navigation from "./Navigation";
 import { createCampaignPost } from "../actions/createCampaignActions";
+import {registrationStore } from '../actions/registrationActions'
 
 const CreateCampaign = props => {
+  const user_id = localStorage.getItem('user_id')
+  console.log(user_id)
   const history = useHistory();
   const [newCampaign, setNewCampaign] = useState({
-    org_id: 1,
+    org_id: user_id,
     campaign: "",
     location: "",
     // image_url: "",
@@ -224,4 +227,8 @@ const CreateCampaign = props => {
   );
 };
 
-export default connect(null, { createCampaignPost })(CreateCampaign);
+const mapStateToProps = state => {
+  console.log(state)
+}
+
+export default connect(mapStateToProps, { createCampaignPost, registrationStore })(CreateCampaign);

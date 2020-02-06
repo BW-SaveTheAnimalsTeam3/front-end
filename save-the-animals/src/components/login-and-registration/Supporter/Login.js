@@ -20,7 +20,7 @@ const SupporterLogin = props => {
       .then(res => 
         // console.log(res)
         {localStorage.setItem('token', res.data.token)
-      return props.history.push('/organization')}
+      return props.history.push('/supporter')}
       )
       .catch(err => console.log(err))
     // props.loginSupporterAuth(supporterLogin);
