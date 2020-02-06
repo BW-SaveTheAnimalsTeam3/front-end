@@ -162,7 +162,7 @@ const SupporterSignUp = props => {
         <option value="WY">Wyoming</option>
       </select> */}
 
-      <button>Create an Account</button>
+      <button>Create Account</button>
     </form>
   );
 };
