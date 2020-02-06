@@ -142,17 +142,17 @@ localStorage.setItem('org_id', props.campaigns.id)
                     <span>Progress Toward Goal:</span>
                     <p>$0/${modalState.funding_goal}</p>
                   </div>
-                  <div className="bottom-content">
+                  {/* <div className="bottom-content">
                     <p>{modalState.description}</p>
                     <div className="progress-info">
                       <span>Progress Toward Goal:</span>
                       <p>{modalState.funding_goal}</p>
-                    </div>
+                    </div> */}
                     <Progress value={75}>75%</Progress>
                     <p>
                       <span>Deadline:</span> {modalState.deadline}
                     </p>
-                  </div> 
+                  {/* </div>  */}
                    </div>
                 </ModalBody>
                
@@ -175,7 +175,7 @@ localStorage.setItem('org_id', props.campaigns.id)
             </div>
           );
         })}
-      
+      {/* </div> */}
       {editModal === true && <EditCampaign />}
       <button onClick={getCampaigns} className="getButton">
         Display Campaigns
