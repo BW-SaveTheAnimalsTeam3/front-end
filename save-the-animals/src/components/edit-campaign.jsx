@@ -14,14 +14,18 @@ import {
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 
-import { editCampaignModal, editCampaignPut } from "../actions/editCampaignActions";
+import {
+  editCampaignModal,
+  editCampaignPut
+} from "../actions/editCampaignActions";
 
 const EditCampaign = props => {
+  const org_id = localStorage.getItem("org_id");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState("");
   const [initialValue, setInitialValue] = useState({
-      org_id: props.org_id,
+    org_id: org_id,
     campaign: props.campaign,
     location: props.location,
     description: props.description,
@@ -31,7 +35,7 @@ const EditCampaign = props => {
     deadline: props.deadline
   });
   console.log(initialValue);
-  console.log('props', props.propsState)
+  console.log("props", props.propsState);
 
   const handleClick = e => {
     e.preventDefault();
@@ -40,9 +44,7 @@ const EditCampaign = props => {
     setSelected(e.target.value);
   };
 
-  const editClick = e => {
-
-  }
+  const editClick = e => {};
 
   const handleChanges = e => {
     setInitialValue({ ...initialValue, [e.target.name]: e.target.value });
@@ -51,11 +53,10 @@ const EditCampaign = props => {
   const handleSubmit = e => {
     e.preventDefault();
     console.log("submit");
-    props.editCampaignPut(initialValue, props.id)
-    
+    props.editCampaignPut(initialValue, props.id);
   };
 
-  console.log('type of', typeof props.id)
+  console.log("type of", typeof props.id);
 
   const uploadImage = async e => {
     const files = e.target.files;
@@ -87,7 +88,6 @@ const EditCampaign = props => {
         <Modal isOpen={true}>
           <ModalHeader>
             Edit This Campaign
-            
             {/* <button onClick={() => props.editCampaignModal(false)}>
               Close
             </button> */}
@@ -139,7 +139,7 @@ const EditCampaign = props => {
                   placeholder={props.description}
                   name="description"
                   value={initialValue.description}
-                onChange={handleChanges}
+                  onChange={handleChanges}
                 />
               </div>
               <Input
@@ -211,11 +211,20 @@ const EditCampaign = props => {
                   step="1"
                   name="funding_goal"
                   value={initialValue.funding_goal}
-                onChange={handleChanges}
+                  onChange={handleChanges}
                 />
               </InputGroup>
-              <Input type="datetime-local" name="deadline" value={initialValue.deadline} onChange={handleChanges} />
-              <button type="submit" className="submit-button" onClick={() => editClick}>
+              <Input
+                type="datetime-local"
+                name="deadline"
+                value={initialValue.deadline}
+                onChange={handleChanges}
+              />
+              <button
+                type="submit"
+                className="submit-button"
+                onClick={() => editClick}
+              >
                 Apply Changes
               </button>
             </form>
@@ -243,4 +252,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { editCampaignModal, editCampaignPut })(EditCampaign);
+export default connect(mapStateToProps, { editCampaignModal, editCampaignPut })(
+  EditCampaign
+);
