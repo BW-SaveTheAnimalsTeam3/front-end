@@ -13,23 +13,32 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
+import {useHistory} from 'react-router';
 
-import { editCampaignModal, editCampaignPut } from "../actions/editCampaignActions";
+import {
+  editCampaignModal,
+  editCampaignPut
+} from "../actions/editCampaignActions";
 
 const EditCampaign = props => {
+    const history = useHistory();
+  const org_id = localStorage.getItem("org_id");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState("");
   const [initialValue, setInitialValue] = useState({
+    org_id: org_id,
     campaign: props.campaign,
     location: props.location,
     description: props.description,
     species: props.species,
-    urgency_level: props.urgency_level,
+    urgency_level: selected,
     funding_goal: props.funding_goal,
-    deadline: props.deadline
+    deadline: props.deadline,
+    image: props.image
   });
   console.log(initialValue);
+  console.log("props", props.propsState);
 
   const handleClick = e => {
     e.preventDefault();
@@ -39,8 +48,8 @@ const EditCampaign = props => {
   };
 
   const editClick = e => {
-
-  }
+      window.location.reload();
+  };
 
   const handleChanges = e => {
     setInitialValue({ ...initialValue, [e.target.name]: e.target.value });
@@ -49,14 +58,16 @@ const EditCampaign = props => {
   const handleSubmit = e => {
     e.preventDefault();
     console.log("submit");
-    props.editCampaignPut(initialValue, props.id)
-    
+    props.editCampaignPut(initialValue, props.id);
+    window.location.reload();
   };
+
+  console.log("type of", typeof props.id);
 
   const uploadImage = async e => {
     const files = e.target.files;
     const data = new FormData();
-    // console.log(e.target, 'target')
+    console.log(e.target, 'target')
     data.append("file", files[0]);
     data.append("upload_preset", "save-the-animals");
     setLoading(true);
@@ -71,6 +82,7 @@ const EditCampaign = props => {
 
     setImage(file.secure_url);
     setLoading(false);
+    setInitialValue({ ...initialValue, image: file.secure_url });
   };
 
   console.log("props", props.openModal);
@@ -83,7 +95,6 @@ const EditCampaign = props => {
         <Modal isOpen={true}>
           <ModalHeader>
             Edit This Campaign
-            
             {/* <button onClick={() => props.editCampaignModal(false)}>
               Close
             </button> */}
@@ -92,16 +103,17 @@ const EditCampaign = props => {
             <form onSubmit={handleSubmit}>
               <Input
                 type="text"
-                placeholder="Name Campaign"
+                placeholder={props.campaign}
                 name="campaign"
                 value={initialValue.campaign}
                 onChange={handleChanges}
               />
               <Input
                 type="text"
-                placeholder="Species"
+                placeholder={props.species}
                 name="species"
-                value={props.species}
+                value={initialValue.species}
+                onChange={handleChanges}
               />
               <div className="image-description-cont">
                 <div className="image-cont">
@@ -110,7 +122,7 @@ const EditCampaign = props => {
                     className="image"
                     type="file"
                     id="file"
-                    name="file"
+                    name="image"
                     placeholder="Upload Image"
                     onChange={uploadImage}
                   />
@@ -131,16 +143,18 @@ const EditCampaign = props => {
                 <textarea
                   className="description"
                   type="text"
-                  placeholder="Tell us what's happening..."
+                  placeholder={props.description}
                   name="description"
-                  value={props.description}
+                  value={initialValue.description}
+                  onChange={handleChanges}
                 />
               </div>
               <Input
                 type="text"
-                placeholder="Location"
+                placeholder={props.location}
                 name="location"
-                value={props.location}
+                value={initialValue.location}
+                onChange={handleChanges}
               />
               <ListGroup>
                 <h3>Urgency Level</h3>
@@ -197,17 +211,27 @@ const EditCampaign = props => {
               <InputGroup>
                 <InputGroupAddon addonType="prepend">$</InputGroupAddon>
                 <Input
-                  placeholder="Funding Goal"
+                  placeholder={props.funding_goal}
                   min={0}
                   max={1000000}
                   type="number"
                   step="1"
-                  name="goal"
-                  value={props.funding_goal}
+                  name="funding_goal"
+                  value={initialValue.funding_goal}
+                  onChange={handleChanges}
                 />
               </InputGroup>
-              <Input type="datetime-local" name="deadline" />
-              <button type="submit" className="submit-button" onClick={() => editClick}>
+              <Input
+                type="datetime-local"
+                name="deadline"
+                value={initialValue.deadline}
+                onChange={handleChanges}
+              />
+              <button
+                type="submit"
+                className="submit-button"
+                onClick={() => editClick}
+              >
                 Apply Changes
               </button>
             </form>
@@ -222,6 +246,7 @@ const mapStateToProps = state => {
   console.log(state.editCampaignReducer, "state");
   return {
     openModal: state.editCampaignReducer.isOpen,
+    org_id: state.editCampaignReducer.campaign.org_id,
     campaign: state.editCampaignReducer.campaign.campaign,
     species: state.editCampaignReducer.campaign.species,
     location: state.editCampaignReducer.campaign.location,
@@ -229,8 +254,12 @@ const mapStateToProps = state => {
     urgency_level: state.editCampaignReducer.campaign.urgency_level,
     funding_goal: state.editCampaignReducer.campaign.funding_goal,
     deadline: state.editCampaignReducer.campaign.deadline,
-    id: state.editCampaignReducer.campaign.id
+    image: state.editCampaignReducer.campaign.image,
+    id: state.editCampaignReducer.campaign.id,
+    propsState: state.editCampaignReducer.campaign
   };
 };
 
-export default connect(mapStateToProps, { editCampaignModal, editCampaignPut })(EditCampaign);
+export default connect(mapStateToProps, { editCampaignModal, editCampaignPut })(
+  EditCampaign
+);

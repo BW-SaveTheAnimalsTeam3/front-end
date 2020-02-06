@@ -16,20 +16,21 @@ import { createCampaignPost } from "../actions/createCampaignActions";
 import {registrationStore } from '../actions/registrationActions'
 
 const CreateCampaign = props => {
-  const user_id = localStorage.getItem('user_id')
-  console.log(user_id)
+  const org_id = localStorage.getItem('org_id')
+  console.log(org_id)
   const history = useHistory();
   const [newCampaign, setNewCampaign] = useState({
-    org_id: user_id,
+    org_id: org_id,
     campaign: "",
     location: "",
-    // image_url: "",
+    
     description: "",
     
     species: "",
     urgency_level: "",
     funding_goal: "",
-    deadline: ""
+    deadline: "",
+    image: ''
   });
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -79,7 +80,7 @@ const CreateCampaign = props => {
 
     setImage(file.secure_url);
     setLoading(false);
-    setNewCampaign({ ...newCampaign, image_url: file.secure_url });
+    setNewCampaign({ ...newCampaign, image: file.secure_url });
   };
 
   console.log("Campaign", newCampaign);
@@ -117,7 +118,7 @@ const CreateCampaign = props => {
                 id="file"
                 name="file"
                 placeholder="Upload Image"
-                // onChange={uploadImage}
+                onChange={uploadImage}
               />
               {loading ? (
                 <div className="loader">
