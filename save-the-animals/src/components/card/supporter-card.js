@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+
     Modal,
     ModalHeader,
     ModalBody,
@@ -8,22 +9,22 @@ import {
     Input,
     InputGroup,
     InputGroupAddon
+
 } from "reactstrap";
 import { connect } from "react-redux";
 import axios from "axios";
-import { axiosWithAuth } from '../../utils/axiosWithAuth'
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { useHistory } from "react-router";
 
 import EditCampaign from "../edit-campaign";
 import {
-    editCampaignGet,
-    editCampaignModal,
-    deleteCampaign
+  editCampaignGet,
+  editCampaignModal,
+  deleteCampaign
 } from "../../actions/editCampaignActions";
 
-
-
 const SupporterCard = props => {
+
     const [modal, setModal] = useState(false);
     const [editModal, setEditModal] = useState(false);
     const [modalState, setModalState] = useState({});
@@ -179,10 +180,14 @@ const SupporterCard = props => {
                         </div>
                     );
                 })}
+
             </div>
-            {editModal === true && <EditCampaign />}
-        </>
-    );
+          );
+        })}
+      </div>
+      {editModal === true && <EditCampaign />}
+    </>
+  );
 };
 
 export default SupporterCard;
