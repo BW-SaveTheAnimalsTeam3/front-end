@@ -17,7 +17,7 @@ const RegisterOrganization = props => {
         `https://save-the-animals-backend.herokuapp.com/api/users/register/organizations`, orgSignUp
       )
       .then(res => {
-          props.history.push('/organization')
+        props.history.push('/organization')
         console.log(res);
       })
       .catch(err => console.log(err));
@@ -29,15 +29,16 @@ const RegisterOrganization = props => {
   console.log(orgSignUp)
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="register-organization-container">
+      <form onSubmit={handleSubmit} className="register-organization-form">
+        <h2>Please Enter Your Organization's Name</h2>
         <input
           name="org_name"
           placeholder='Organization Name'
           value={orgSignUp.org_name}
           onChange={handleChanges}
         />
-        <input value={props.id} />
+        <input className="org-id" value={props.id} />
         <button>Submit</button>
       </form>
     </div>
