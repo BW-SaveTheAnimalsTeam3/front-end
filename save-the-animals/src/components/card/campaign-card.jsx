@@ -140,7 +140,7 @@ const CampaignCard = props => {
                       <span>Progress Toward Goal:</span>
                       <p>{modalState.funding_goal}</p>
                     </div> */}
-                  <Progress value={75}>75%</Progress>
+                  <Progress value={0}>75%</Progress>
                   <p>
                     <span>Deadline:</span> {modalState.deadline}
                   </p>

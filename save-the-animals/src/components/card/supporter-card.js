@@ -15,13 +15,10 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { useHistory } from "react-router";
 
 import EditCampaign from "../edit-campaign";
-import {
-  editCampaignGet,
-  editCampaignModal,
-  deleteCampaign
-} from "../../actions/editCampaignActions";
+import { donationPost } from "../../actions/donationActions";
 
 const SupporterCard = props => {
+  const user_id = localStorage.getItem("user_id");
   const [modal, setModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
   const [modalState, setModalState] = useState({});
@@ -30,6 +27,7 @@ const SupporterCard = props => {
 
   const [campaigns, setCampaigns] = useState([]);
   const [query, setQuery] = useState("");
+  const [currentDonations, setCurrentDonations] = useState(0)
 
   const toggle = () => setModal(!modal);
   const toggleEdit = () => {
@@ -53,24 +51,42 @@ const SupporterCard = props => {
         setModalState(res.data);
       })
       .catch(err => console.log(err));
+    
+      axios
+    .get(`https://save-the-animals-backend.herokuapp.com/api/donations/campaigns/${id}`)
+    .then(res => {console.log('donation response',res.data)
+})
+    .catch(err => console.log(err))
   };
+
+ 
 
   const handleDonations = e => {
     e.preventDefault();
     setDonations(e.target.value);
   };
 
-  const handleDelete = id => {
-    props.deleteCampaign(id);
-    setModal(!modal);
-    // history.push("/organization");
-    // axios
-    //   .delete(`https://save-the-animals-backend.herokuapp.com/api/campaigns/${id}`)
-    //   .then(res => console.log(res))
-    //   .catch(err => console.log(err));
+//   const fetchDonations = id => {
+    
+//   }
+
+  const donationClick = campaign_id => {
+    console.log(`Just received the following donation amount: ${donations}`);
+    console.log(campaign_id);
+    const donationSubmit = {
+      user_id: user_id,
+      campaign_id: campaign_id,
+      donation_amount: donations
+    };
+    console.log("donation submit", donationSubmit);
+    props.donationPost(donationSubmit)
+    setCurrentDonations(props.donations)
   };
-  console.log("props in campaign card", props);
-  console.log("modal state", modalState);
+
+  
+
+//   console.log("props in campaign card", props);
+//   console.log("modal state", modalState);
 
   useEffect(() => {
     axios
@@ -141,9 +157,9 @@ const SupporterCard = props => {
                     <p>{modalState.description}</p>
                     <div className="progress-info">
                       <span>Progress Toward Goal:</span>
-                      <p>{modalState.funding_goal}</p>
+                      <p>${currentDonations}/${modalState.funding_goal}</p>
                     </div>
-                    <Progress value={75}>75%</Progress>
+          <Progress value={currentDonations / modalState.funding_goal * 100}>{currentDonations / modalState.funding_goal * 100}%</Progress>
                     <p>
                       <span>Deadline:</span> {modalState.deadline}
                     </p>
@@ -168,11 +184,7 @@ const SupporterCard = props => {
                   </div>
                   <button
                     className="donate-button"
-                    onClick={() =>
-                      console.log(
-                        `Just received the following donation amount: ${donations}`
-                      )
-                    }
+                    onClick={() => donationClick(modalState.id)}
                   >
                     Donate
                   </button>
@@ -182,10 +194,17 @@ const SupporterCard = props => {
           );
         })}
       </div>
-      
+
       {editModal === true && <EditCampaign />}
     </>
   );
 };
 
-export default SupporterCard;
+const mapStateToProps = state => {
+    console.log(state.donateReducer)
+    return {
+        donations: state.donateReducer.totalDonations
+    }
+}
+
+export default connect(mapStateToProps, {donationPost}) (SupporterCard);
