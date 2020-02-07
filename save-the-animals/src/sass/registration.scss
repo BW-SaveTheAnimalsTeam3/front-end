@@ -1,6 +1,5 @@
 .nav-tabs {
   justify-content: center;
-
 }
 
 .nav-item {
@@ -27,7 +26,7 @@
   margin: auto;
   border-radius: 20px;
 
-  @media(max-width: 800px) {
+  @media (max-width: 800px) {
     width: 90%;
 
     button {
@@ -35,13 +34,11 @@
     }
 
     .change-form {
-
       a {
         width: 50%;
         margin-bottom: 3%;
       }
     }
-
   }
 
   .form-heading {
@@ -57,10 +54,9 @@
     width: 30%;
     margin: auto;
 
-    @media(max-width: 800px) {
+    @media (max-width: 800px) {
       width: 65%;
     }
-
   }
 
   button {
@@ -79,24 +75,20 @@
   margin: auto;
   border-radius: 20px;
 
-  @media(max-width: 800px) {
+  @media (max-width: 800px) {
     width: 90%;
 
     button {
       background-color: white;
-
     }
 
     .change-form {
-
       a {
         width: 50%;
         margin-bottom: 3%;
       }
     }
-
   }
-
 
   .form-heading {
     text-align: center;
@@ -111,7 +103,7 @@
     width: 30%;
     margin: auto;
 
-    @media(max-width: 800px) {
+    @media (max-width: 800px) {
       width: 65%;
     }
   }
@@ -150,7 +142,6 @@
       text-decoration: none;
     }
   }
-
 }
 
 .org-checkbox {
@@ -161,7 +152,6 @@
   #checkbox {
     margin: 5%;
   }
-
 }
 
 input {

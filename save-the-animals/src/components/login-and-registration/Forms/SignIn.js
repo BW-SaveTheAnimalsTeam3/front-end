@@ -9,7 +9,7 @@ import {
   Row,
   Col
 } from "reactstrap";
-import { TweenLite, Linear } from 'gsap';
+import { TweenLite, Linear } from "gsap";
 import classnames from "classnames";
 import OrgLogin from "../Organization/Login";
 import SupporterLogin from "../Supporter/Login";
@@ -23,23 +23,22 @@ const SignIn = props => {
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
   };
-  console.log(props, 'sign in')
+  console.log(props, "sign in");
 
   // GREENSOCK ANIMATIONS
 
   function fadeIn() {
-    const el = document.querySelector('.sign-in');
+    const el = document.querySelector(".sign-in");
     const duration = 0.75;
     const from = { opacity: 0, ease: Linear.easeIn };
     const to = { opacity: 1 };
     TweenLite.fromTo(el, duration, from, to);
   }
 
-
   return (
-    <div className='form-container' onLoad={fadeIn()}>
-      <div className='sign-in'>
-        <h4 className='form-heading'>Login</h4>
+    <div className="form-container" onLoad={fadeIn()}>
+      <div className="sign-in">
+        <h4 className="form-heading">Login</h4>
         <Nav tabs>
           <NavItem>
             <NavLink
@@ -49,7 +48,7 @@ const SignIn = props => {
               }}
             >
               Organization
-          </NavLink>
+            </NavLink>
           </NavItem>
           <NavItem>
             <NavLink
@@ -59,7 +58,7 @@ const SignIn = props => {
               }}
             >
               Supporter
-          </NavLink>
+            </NavLink>
           </NavItem>
         </Nav>
         <TabContent activeTab={activeTab}>

@@ -13,7 +13,7 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
-import {useHistory} from 'react-router';
+import { useHistory } from "react-router";
 
 import {
   editCampaignModal,
@@ -21,7 +21,7 @@ import {
 } from "../actions/editCampaignActions";
 
 const EditCampaign = props => {
-    const history = useHistory();
+  const history = useHistory();
   const org_id = localStorage.getItem("org_id");
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -48,7 +48,7 @@ const EditCampaign = props => {
   };
 
   const editClick = e => {
-      window.location.reload();
+    window.location.reload();
   };
 
   const handleChanges = e => {
@@ -67,7 +67,7 @@ const EditCampaign = props => {
   const uploadImage = async e => {
     const files = e.target.files;
     const data = new FormData();
-    console.log(e.target, 'target')
+    console.log(e.target, "target");
     data.append("file", files[0]);
     data.append("upload_preset", "save-the-animals");
     setLoading(true);

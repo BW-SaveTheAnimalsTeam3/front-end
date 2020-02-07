@@ -56,8 +56,8 @@ const CampaignCard = props => {
     setModal(!modal);
   };
   console.log("props in campaign card", props);
-console.log(props.campaigns.id)
-localStorage.setItem('org_id', props.campaigns.id)
+  console.log(props.campaigns.id);
+  localStorage.setItem("org_id", props.campaigns.id);
 
   const getCampaigns = () => {
     axios
@@ -89,8 +89,6 @@ localStorage.setItem('org_id', props.campaigns.id)
 
   return (
     <>
-     
-
       {/* STYLING CAMPAIGN CARDS IN GRID FORMAT */}
       {/* <div className="grid-container"> */}
 
@@ -105,10 +103,7 @@ localStorage.setItem('org_id', props.campaigns.id)
               Status: {campaign.urgency_level}
             </div>
             <div className="image-container">
-              <img
-                src={campaign.image}
-                alt="campaign image"
-              />
+              <img src={campaign.image} alt="campaign image" />
             </div>
             <button onClick={() => detailClick(campaign.id)}>
               View Details
@@ -131,10 +126,7 @@ localStorage.setItem('org_id', props.campaigns.id)
                 </div>
 
                 <div className="image-container">
-                  <img
-                    src={modalState.image}
-                    alt="campaign image"
-                  />
+                  <img src={modalState.image} alt="campaign image" />
                 </div>
                 <div className="bottom-content">
                   <p>{modalState.description}</p>
@@ -148,33 +140,33 @@ localStorage.setItem('org_id', props.campaigns.id)
                       <span>Progress Toward Goal:</span>
                       <p>{modalState.funding_goal}</p>
                     </div> */}
-                    <Progress value={75}>75%</Progress>
-                    <p>
-                      <span>Deadline:</span> {modalState.deadline}
-                    </p>
+                  <Progress value={75}>75%</Progress>
+                  <p>
+                    <span>Deadline:</span> {modalState.deadline}
+                  </p>
                   {/* </div>  */}
-                   </div>
-                </ModalBody>
-               
-                <ModalFooter>
-                  {console.log(modalState.id, "modal state")}
-                  <button
-                    className="edit-button"
-                    onClick={() => handleEdit(modalState.id)}
-                  >
-                    Edit Campaign
+                </div>
+              </ModalBody>
+
+              <ModalFooter>
+                {console.log(modalState.id, "modal state")}
+                <button
+                  className="edit-button"
+                  onClick={() => handleEdit(modalState.id)}
+                >
+                  Edit Campaign
                 </button>
-                  <button
-                    className="donate-button"
-                    onClick={() => handleDelete(modalState.id)}
-                  >
-                    Delete Campaign
+                <button
+                  className="donate-button"
+                  onClick={() => handleDelete(modalState.id)}
+                >
+                  Delete Campaign
                 </button>
-                </ModalFooter>
-              </Modal>
-            </div>
-          );
-        })}
+              </ModalFooter>
+            </Modal>
+          </div>
+        );
+      })}
       {/* </div> */}
       {editModal === true && <EditCampaign />}
       <button onClick={getCampaigns} className="getButton">

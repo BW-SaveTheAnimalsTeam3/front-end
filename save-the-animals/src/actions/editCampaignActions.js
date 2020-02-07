@@ -11,7 +11,7 @@ import {
   PUT_CAMPAIGN_FAILURE
 } from "./types";
 import axios from "axios";
-import {axiosWithAuth} from '../utils/axiosWithAuth'
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 export const editCampaignModal = bool => {
   console.log(bool);
@@ -33,26 +33,26 @@ export const editCampaignGet = id => dispatch => {
 };
 
 export const editCampaignPut = (initialValue, id) => dispatch => {
-    dispatch({ type: PUT_CAMPAIGN_LOADING });
-    axiosWithAuth()
-        .put(`/campaigns/${id}`, initialValue)
-        .then(res => {
-            dispatch({ type: PUT_CAMPAIGN_SUCCESS })
-        })
-        .catch(err => {
-            dispatch({ type: PUT_CAMPAIGN_FAILURE, payload: err })
-        })
-}
+  dispatch({ type: PUT_CAMPAIGN_LOADING });
+  axiosWithAuth()
+    .put(`/campaigns/${id}`, initialValue)
+    .then(res => {
+      dispatch({ type: PUT_CAMPAIGN_SUCCESS });
+    })
+    .catch(err => {
+      dispatch({ type: PUT_CAMPAIGN_FAILURE, payload: err });
+    });
+};
 
 export const deleteCampaign = id => dispatch => {
   dispatch({ type: DELETE_CAMPAIGN_LOADING });
   axiosWithAuth()
     .delete(`/campaigns/${id}`)
     .then(res => {
-        console.log(res);
-        dispatch({ type: DELETE_CAMPAIGN_SUCCESS })
+      console.log(res);
+      dispatch({ type: DELETE_CAMPAIGN_SUCCESS });
     })
     .catch(err => {
-        dispatch({ type: DELETE_CAMPAIGN_FAILURE, payload: err })
-    })
+      dispatch({ type: DELETE_CAMPAIGN_FAILURE, payload: err });
+    });
 };

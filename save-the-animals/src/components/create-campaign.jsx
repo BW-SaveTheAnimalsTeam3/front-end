@@ -13,24 +13,24 @@ import axios from "axios";
 
 import Navigation from "./Navigation";
 import { createCampaignPost } from "../actions/createCampaignActions";
-import {registrationStore } from '../actions/registrationActions'
+import { registrationStore } from "../actions/registrationActions";
 
 const CreateCampaign = props => {
-  const org_id = localStorage.getItem('org_id')
-  console.log(org_id)
+  const org_id = localStorage.getItem("org_id");
+  console.log(org_id);
   const history = useHistory();
   const [newCampaign, setNewCampaign] = useState({
     org_id: org_id,
     campaign: "",
     location: "",
-    
+
     description: "",
-    
+
     species: "",
     urgency_level: "",
     funding_goal: "",
     deadline: "",
-    image: ''
+    image: ""
   });
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -51,14 +51,16 @@ const CreateCampaign = props => {
   const handleSubmit = e => {
     e.preventDefault();
     console.log("submit");
-    axios.post(
-      `https://save-the-animals-backend.herokuapp.com/api/campaigns/createNewCampaign`,
-      newCampaign
-    )
-    .then(res => {console.log(res)
-      history.push('/organization')
-    })
-    .catch(err => console.log(err))
+    axios
+      .post(
+        `https://save-the-animals-backend.herokuapp.com/api/campaigns/createNewCampaign`,
+        newCampaign
+      )
+      .then(res => {
+        console.log(res);
+        history.push("/organization");
+      })
+      .catch(err => console.log(err));
     // props.history.push("/organization");
   };
 
@@ -229,7 +231,10 @@ const CreateCampaign = props => {
 };
 
 const mapStateToProps = state => {
-  console.log(state)
-}
+  console.log(state);
+};
 
-export default connect(mapStateToProps, { createCampaignPost, registrationStore })(CreateCampaign);
+export default connect(mapStateToProps, {
+  createCampaignPost,
+  registrationStore
+})(CreateCampaign);

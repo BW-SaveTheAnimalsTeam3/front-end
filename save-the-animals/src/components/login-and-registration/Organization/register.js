@@ -14,7 +14,8 @@ const RegisterOrganization = props => {
     e.preventDefault();
     axios
       .post(
-        `https://save-the-animals-backend.herokuapp.com/api/users/register/organizations`, orgSignUp
+        `https://save-the-animals-backend.herokuapp.com/api/users/register/organizations`,
+        orgSignUp
       )
       .then(res => {
         props.history.push('/organization')
@@ -26,7 +27,7 @@ const RegisterOrganization = props => {
   const handleChanges = e => {
     setOrgSignUp({ ...orgSignUp, [e.target.name]: e.target.value });
   };
-  console.log(orgSignUp)
+  console.log(orgSignUp);
 
   return (
     <div className="register-organization-container">
@@ -34,7 +35,7 @@ const RegisterOrganization = props => {
         <h2>Please Enter Your Organization's Name</h2>
         <input
           name="org_name"
-          placeholder='Organization Name'
+          placeholder="Organization Name"
           value={orgSignUp.org_name}
           onChange={handleChanges}
         />
