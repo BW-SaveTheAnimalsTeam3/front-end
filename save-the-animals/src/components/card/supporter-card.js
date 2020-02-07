@@ -4,7 +4,10 @@ import {
     ModalHeader,
     ModalBody,
     ModalFooter,
-    Progress
+    Progress,
+    Input,
+    InputGroup,
+    InputGroupAddon
 } from "reactstrap";
 import { connect } from "react-redux";
 import axios from "axios";
@@ -25,6 +28,8 @@ const SupporterCard = props => {
     const [editModal, setEditModal] = useState(false);
     const [modalState, setModalState] = useState({});
     const history = useHistory();
+    const [donations, setDonations] = useState(0)
+
 
     const [campaigns, setCampaigns] = useState([]);
     const [query, setQuery] = useState('');
@@ -52,6 +57,12 @@ const SupporterCard = props => {
             })
             .catch(err => console.log(err));
     };
+
+    const handleDonations = (e) => {
+        e.preventDefault();
+        setDonations(e.target.value);
+    }
+
 
     const handleDelete = id => {
         props.deleteCampaign(id);
@@ -142,9 +153,24 @@ const SupporterCard = props => {
                                 </ModalBody>
                                 <ModalFooter className="supporter-modal">
                                     {console.log(modalState.id, "modal state")}
+                                    <div className="supporter-donation-input">
+                                        <InputGroup>
+                                            <InputGroupAddon addonType="prepend">$</InputGroupAddon>
+                                            <Input
+                                                placeholder="Donation Amount"
+                                                min={0}
+                                                max={1000000}
+                                                type="number"
+                                                step="1"
+                                                name="donationAmount"
+                                                value={donations}
+                                                onChange={handleDonations}
+                                            />
+                                        </InputGroup>
+                                    </div>
                                     <button
                                         className="donate-button"
-                                        onClick={() => handleEdit(modalState.id)}
+                                        onClick={() => console.log(`Just received the following donation amount: ${donations}`)}
                                     >
                                         Donate
                 </button>
