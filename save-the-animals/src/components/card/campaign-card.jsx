@@ -54,6 +54,7 @@ const CampaignCard = props => {
   const handleDelete = id => {
     props.deleteCampaign(id);
     setModal(!modal);
+    window.location.reload();
   };
   console.log("props in campaign card", props);
   console.log(props.campaigns.id);
