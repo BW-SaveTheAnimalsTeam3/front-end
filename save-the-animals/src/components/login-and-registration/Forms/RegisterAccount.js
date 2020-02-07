@@ -40,9 +40,9 @@ const RegisterAccount = props => {
   return (
     <div className="form-container" onLoad={fadeIn()}>
       <div className="registration">
-        <h4 className="form-heading">Register</h4>
+        <h4 className='form-heading'></h4>
         <Nav tabs>
-          <NavItem>
+          {/* <NavItem>
             <NavLink
               className={classnames({ active: activeTab === "1" })}
               onClick={() => {
@@ -50,30 +50,30 @@ const RegisterAccount = props => {
               }}
             >
               Organization
-            </NavLink>
-          </NavItem>
+          </NavLink>
+          </NavItem> */}
           <NavItem>
             <NavLink
-              className={classnames({ active: activeTab === "2" })}
-              onClick={() => {
-                toggle("2");
-              }}
+              className={classnames({ active: activeTab === "1" })}
+            // onClick={() => {
+            //   toggle("2");
+            // }}
             >
-              Supporter
-            </NavLink>
+              Register
+          </NavLink>
           </NavItem>
         </Nav>
         <TabContent activeTab={activeTab}>
-          <TabPane tabId="1">
+          <TabPane tabId="2">
             <Row>
               <Col sm="12">
                 {/* RENDERING ORGANIZATION SPECIFIC SIGNUP FORM */}
-                <OrgSignUp {...props} />
-                <ExistingAccount />
+                {/* <OrgSignUp {...props} />
+                <ExistingAccount /> */}
               </Col>
             </Row>
           </TabPane>
-          <TabPane tabId="2">
+          <TabPane tabId="1">
             <Row>
               <Col sm="12">
                 {/* RENDERING SUPPORTER SPECIFIC SIGNUP FORM */}
