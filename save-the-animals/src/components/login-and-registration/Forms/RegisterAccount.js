@@ -42,7 +42,7 @@ const RegisterAccount = props => {
   return (
     <div className="form-container" onLoad={fadeIn()}>
       <div className="registration">
-        <h4 className='form-heading'>Register</h4>
+        <h4 className='form-heading'></h4>
         <Nav tabs>
           {/* <NavItem>
             <NavLink
@@ -57,11 +57,11 @@ const RegisterAccount = props => {
           <NavItem>
             <NavLink
               className={classnames({ active: activeTab === "1" })}
-              onClick={() => {
-                toggle("2");
-              }}
+            // onClick={() => {
+            //   toggle("2");
+            // }}
             >
-              Supporter
+              Register
           </NavLink>
           </NavItem>
         </Nav>

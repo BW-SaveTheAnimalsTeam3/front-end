@@ -1,0 +1,46 @@
+.register-organization-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1440&q=80') no-repeat;
+    background-size: cover;
+    height: 100vh;
+
+    .register-organization-form {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        padding: 7%;
+        border-radius: 20px;
+
+        h2 {
+            text-align: center;
+        }
+
+        input {
+            width: 45%;
+            margin: auto;
+        }
+
+        .org-id {
+            display: none;
+        }
+
+        button {
+            margin: 5% auto 0 auto;
+            width: 35%;
+            background-color: $button-brown;
+            border: none;
+            border-radius: 10px;
+            padding: 1% 0;
+
+            &:hover {
+                color: black;
+                opacity: 0.5;
+            }
+
+        }
+    }
+}
